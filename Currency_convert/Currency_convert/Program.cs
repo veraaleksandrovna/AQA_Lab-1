@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Linq;
- 
+
 namespace Task1
 {
     internal class Program
