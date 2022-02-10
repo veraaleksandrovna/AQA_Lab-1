@@ -1,34 +1,40 @@
 ﻿using System;
 
-namespace bot
+namespace Bot
 {
-internal class Program
+public class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
         Console.WriteLine("=====ДОБРО ПОЖАЛОВАТЬ В ЧАТ-БОТ=====");
         Console.WriteLine("Введите ваше имя: ");
-        var FirstName = Console.ReadLine();
+        var firstName = Console.ReadLine();
         Console.WriteLine("Введите вашу фамилию");
-        var LastName = Console.ReadLine();
-        
-            Console.WriteLine("Введите желаемую дату приёма в формате дд/мм/гггг");
-            DateTime date = Convert.ToDateTime(Console.ReadLine());
-            if (date > DateTime.Now)
-                Console.WriteLine(
-                    $"{UppercaseFirst(LastName)} {UppercaseFirst(FirstName)}, вы записаны на приём {date.Date}");
-            else
-                Console.WriteLine("Дата введена неверно");
-       
+        var lastName = Console.ReadLine();
+        Console.WriteLine("Введите желаемую дату приёма в формате дд/мм/гггг");
+        DateTime date = Convert.ToDateTime(Console.ReadLine());
+        DateHandler(date);
+        Console.WriteLine(
+            $"{UppercaseFirst(lastName)} {UppercaseFirst(firstName)}, вы записаны на приём {date.Date}");
     }
 
-    static string UppercaseFirst(string s)
-{
-if (string.IsNullOrEmpty(s))
-{
-throw new ArgumentNullException();
-}
-return char.ToUpper(s[0]) + s.Substring(1);
-}
+    private static void DateHandler(DateTime date)
+    {
+        if (date > DateTime.Now)
+            Console.WriteLine();
+        else
+            Console.WriteLine("Дата введена неверно");
+    }
+
+    private static string UppercaseFirst(string nameOrSurname)
+    {
+        if (string.IsNullOrEmpty(nameOrSurname))
+        {
+            Console.WriteLine("Имя или фамилия не введены, попробуйте ещё раз");
+            throw new ArgumentNullException();
+        }
+
+        return char.ToUpper(nameOrSurname[0]) + nameOrSurname.Substring(1);
+    }
 }
 }
