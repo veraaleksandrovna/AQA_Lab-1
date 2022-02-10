@@ -1,7 +1,7 @@
 ﻿using System;
 using static Task1.Constants;
 
-namespace Task1
+namespace Converter
 {
     public class Program
     {
