@@ -2,15 +2,15 @@
 
 namespace bot
 {
-class Program
+internal class Program
 {
     static void Main(string[] args)
     {
         Console.WriteLine("=====ДОБРО ПОЖАЛОВАТЬ В ЧАТ-БОТ=====");
         Console.WriteLine("Введите ваше имя: ");
-        string FirstName = Console.ReadLine();
+        var FirstName = Console.ReadLine();
         Console.WriteLine("Введите вашу фамилию");
-        string LastName = Console.ReadLine();
+        var LastName = Console.ReadLine();
         
             Console.WriteLine("Введите желаемую дату приёма в формате дд/мм/гггг");
             DateTime date = Convert.ToDateTime(Console.ReadLine());

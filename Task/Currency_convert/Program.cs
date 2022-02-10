@@ -1,18 +1,16 @@
 ﻿using System;
+using static Task1.Constants;
 
 namespace Task1
 {
-    internal class Program
+    public class Program
     {
-        private static readonly float USD = 2.5712f;
- 
-        private static readonly float EUR = 2.9314f;
- 
-        private static readonly float RUB = 0.034155f;
- 
-        //private static readonly float BYN = 1f;
- 
- 
+        public static readonly string usd = "usd";
+        public static readonly string eur = "eur";
+        public static readonly string rub = "rub";
+
+        public Constants constants = new Constants();
+
         private static string ChooseCurrency()
         {
             Console.WriteLine("Выберите валюту для конвертации:");
@@ -29,26 +27,21 @@ namespace Task1
                     ChooseCurrency();
                     break;
             }
- 
+
             return null;
         }
- 
-        private static float Convert(string inCurr,string outCurr,float sum)
+
+        private static float Convert(string inCurr, string outCurr, float sum)
         {
-            float tempsum = 0f;
-            switch (inCurr)
-            {
-                case "usd":
-                    tempsum = sum * USD;
-                    break;
-                case "eur":
-                    tempsum = sum * EUR;
-                    break;
-                case "rub":
-                    tempsum = sum * RUB;
-                    break;
-            }
- 
+            var tempsum = 0f;
+            tempsum = InputValue(inCurr, sum, tempsum);
+
+            tempsum = OutputValue(outCurr, tempsum);
+            return tempsum;
+        }
+
+        private static float OutputValue(string outCurr, float tempsum)
+        {
             switch (outCurr)
             {
                 case "usd":
@@ -61,16 +54,34 @@ namespace Task1
                     tempsum = (tempsum / RUB);
                     break;
             }
+
+            return tempsum;
+        }
+
+        private static float InputValue(string inCurr, float sum, float tempsum)
+        {
+            switch (inCurr)
+            {
+                case "usd":
+                    tempsum = sum * USD;
+                    break;
+                case "eur":
+                    tempsum = sum * EUR;
+                    break;
+                case "rub":
+                    tempsum = sum * RUB;
+                    break;
+            }
+
             return tempsum;
         }
 
         private static void InputCurrencySumAndConvert()
         {
-            Console.Clear();
-            
-                Console.WriteLine("Введите сумму, которую вы хотите конвертировать:");
+            for (int i = 0; i < Array.MaxLength; i++)
+            {
+                Console.WriteLine("Введите сумму, которую вы хотите конвертировать в формате 1000.1 USD :");
                 var answer = Console.ReadLine();
-                //Console.WriteLine(answer);
                 var answparse = answer.Split(' ');
                 if (answparse.Length > 2)
                 {
@@ -113,17 +124,18 @@ namespace Task1
                     Console.WriteLine("Валюты совпадают повторите попытку.");
                     inCurrency = ChooseCurrency();
                 }
-
-                Console.WriteLine("{0} {1}", Math.Round(Convert(inCurrency, outCurrency, sum), 2), outCurrency);
-
-                return;
-            
+                Console.WriteLine("{0} {1}", RoundValue(inCurrency, outCurrency, sum), outCurrency);
+            }
         }
 
+        private static double RoundValue(string inCurrency, string outCurrency, float sum)
+        {
+            return Math.Round(Convert(inCurrency, outCurrency, sum), 2);
+        }
+        
         public static void Main(string[] args)
         {
-           
-                InputCurrencySumAndConvert();
+            InputCurrencySumAndConvert();
         }
     }
 }
