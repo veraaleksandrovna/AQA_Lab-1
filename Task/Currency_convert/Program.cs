@@ -1,14 +1,10 @@
 ﻿using System;
-using static Task1.Constants;
+using static ConsoleApp2.Constants;
 
-namespace Converter
+namespace ConsoleApp2
 {
     public class Program
     {
-        public static readonly string usd = "usd";
-        public static readonly string eur = "eur";
-        public static readonly string rub = "rub";
-
         public Constants constants = new Constants();
 
         private static string ChooseCurrency()
@@ -28,7 +24,7 @@ namespace Converter
                     break;
             }
 
-            return null;
+            return currency;
         }
 
         private static float Convert(string inCurr, string outCurr, float sum)

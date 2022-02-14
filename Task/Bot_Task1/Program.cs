@@ -12,7 +12,7 @@ public class Program
         Console.WriteLine("Введите вашу фамилию");
         var lastName = Console.ReadLine();
         Console.WriteLine("Введите желаемую дату приёма в формате дд/мм/гггг");
-        DateTime date = Convert.ToDateTime(Console.ReadLine());
+        var date = Convert.ToDateTime(Console.ReadLine());
         DateHandler(date);
         Console.WriteLine(
             $"{UppercaseFirst(lastName)} {UppercaseFirst(firstName)}, вы записаны на приём {date.Date}");
@@ -20,10 +20,18 @@ public class Program
 
     private static void DateHandler(DateTime date)
     {
-        if (date > DateTime.Now)
-            Console.WriteLine();
-        else
-            Console.WriteLine("Дата введена неверно");
+        for (int i = 0; i < array.length; i++)
+        {
+            if (date > DateTime.Now)
+            {
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine("Дата введена неверно");
+                
+            }
+        }
     }
 
     private static string UppercaseFirst(string nameOrSurname)
