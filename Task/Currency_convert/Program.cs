@@ -1,9 +1,9 @@
 ﻿using System;
-using static ConsoleApp2.Constants;
+using static Currency.Constants;
 
-namespace ConsoleApp2
+namespace Currency
 {
-    public class Program
+    public  class Program
     {
         public Constants constants = new Constants();
 
@@ -29,57 +29,56 @@ namespace ConsoleApp2
 
         private static float Convert(string inCurr, string outCurr, float sum)
         {
-            var tempsum = 0f;
-            tempsum = InputValue(inCurr, sum, tempsum);
+            var currencySum = 0f;
+            currencySum = InputValue(inCurr, sum, currencySum);
 
-            tempsum = OutputValue(outCurr, tempsum);
-            return tempsum;
+            currencySum = OutputValue(outCurr, currencySum);
+            return currencySum;
         }
 
-        private static float OutputValue(string outCurr, float tempsum)
+        private static float OutputValue(string outCurr, float currencySum)
         {
             switch (outCurr)
             {
                 case "usd":
-                    tempsum = (tempsum / USD);
+                    currencySum = (currencySum / USD);
                     break;
                 case "eur":
-                    tempsum = (tempsum / EUR);
+                    currencySum = (currencySum / EUR);
                     break;
                 case "rub":
-                    tempsum = (tempsum / RUB);
+                    currencySum = (currencySum / RUB);
                     break;
             }
 
-            return tempsum;
+            return currencySum;
         }
 
-        private static float InputValue(string inCurr, float sum, float tempsum)
+        private static float InputValue(string inCurr, float sum, float currencySum)
         {
             switch (inCurr)
             {
                 case "usd":
-                    tempsum = sum * USD;
+                    currencySum = sum * USD;
                     break;
                 case "eur":
-                    tempsum = sum * EUR;
+                    currencySum = sum * EUR;
                     break;
                 case "rub":
-                    tempsum = sum * RUB;
+                    currencySum = sum * RUB;
                     break;
             }
-
-            return tempsum;
+            return currencySum;
         }
 
         private static void InputCurrencySumAndConvert()
         {
-            for (int i = 0; i < Array.MaxLength; i++)
+            for (int i = 0; i < 100; i++)
             {
                 Console.WriteLine("Введите сумму, которую вы хотите конвертировать в формате 1000.1 USD :");
-                var answer = Console.ReadLine();
-                var answparse = answer.Split(' ');
-                if (answparse.Length > 2)
+                var readLine = Console.ReadLine();
+                var splitString = readLine.Split(' ');
+                if (splitString.Length > 2)
                 {
                     Console.WriteLine("Неправильный ввод суммы!");
                     Console.WriteLine("Пример ввода: 1000.1 USD");
@@ -88,20 +87,20 @@ namespace ConsoleApp2
                     return;
                 }
 
-                if (answparse[0].Contains("."))
+                if (splitString[0].Contains("."))
                 {
-                    answparse[0] = answparse[0].Replace('.', ',');
+                    splitString[0] = splitString[0].Replace('.', ',');
                 }
 
                 float sum = 0f;
-                if (!float.TryParse(answparse[0], out sum))
+                if (!float.TryParse(splitString[0], out sum))
                 {
                     Console.WriteLine("Ошибка ввода суммы! Повторите попытку.");
                     InputCurrencySumAndConvert();
                     return;
                 }
 
-                switch (answparse[1].ToLower())
+                switch (StringToLower(splitString))
                 {
                     case "usd":
                     case "eur":
@@ -113,7 +112,7 @@ namespace ConsoleApp2
                         break;
                 }
 
-                var inCurrency = answparse[1].ToLower();
+                var inCurrency = StringToLower(splitString);
                 var outCurrency = ChooseCurrency();
                 while (inCurrency == outCurrency)
                 {
@@ -122,6 +121,11 @@ namespace ConsoleApp2
                 }
                 Console.WriteLine("{0} {1}", RoundValue(inCurrency, outCurrency, sum), outCurrency);
             }
+        }
+
+        private static string StringToLower(string[] splitString)
+        {
+            return splitString[1].ToLower();
         }
 
         private static double RoundValue(string inCurrency, string outCurrency, float sum)
