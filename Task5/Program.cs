@@ -1,10 +1,10 @@
-﻿using Task5;
+﻿using ShopSimulator;
 
 public class Program
 {
     public static void Main(string[] args)
     {
-        ShopActions action = new ShopActions();
+        var action = new ShopActions();
         var repository = new FakeData();
         var listOfGoods = new List<Goods>();
         for (var i = 0; i < 5; i++)
@@ -28,7 +28,7 @@ public class Program
             Console.WriteLine("4.Edit order");
             Console.WriteLine("0.Exit");
             Console.Write("Your choice: ");
-            
+
             menuChoice = Console.ReadLine();
 
             switch (menuChoice)
@@ -49,7 +49,7 @@ public class Program
                     break;
                 case "4":
 
-                    Console.Write("Add(1) или Delete (2)");
+                    Console.Write("Add(1) \n Delete (2)");
                     switch (Console.ReadLine())
                     {
                         case "1":
@@ -80,9 +80,7 @@ public class Program
         {
             orders.Add(new Order());
             for (var j = 0; j < randomNumber.Next(2, 20); j++)
-            {
                 orders[i].Goods.Add(goods.ElementAt(randomNumber.Next(goods.Count() - 1)));
-            }
         }
 
         return goods;
@@ -98,10 +96,7 @@ public class Program
         }
 
         var users = repository.GenerateUsers(listOfUsers);
-        for (var i = 0; i < 5; i++)
-        {
-            users.ElementAt(i).Order = orders[i];
-        }
+        for (var i = 0; i < 5; i++) users.ElementAt(i).Order = orders[i];
 
         return users;
     }

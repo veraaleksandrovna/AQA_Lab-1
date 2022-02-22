@@ -1,4 +1,4 @@
-namespace Task5;
+namespace ShopSimulator;
 
 public class User
 {

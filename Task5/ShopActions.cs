@@ -1,4 +1,4 @@
-namespace Task5;
+namespace ShopSimulator;
 
 public class ShopActions
 {
@@ -17,11 +17,9 @@ public class ShopActions
         Console.WriteLine(header + line);
 
         for (var i = 0; i < userOrder.Count(); i++)
-        {
             Console.WriteLine("{4,2} | {0,20} | {1,30} | {2,10} | {3} ", userOrder[i].Category,
                 userOrder[i].Name,
                 userOrder[i].Price, userOrder[i].Id, i + 1);
-        }
 
         Console.WriteLine(line + "\nTotal: " + userOrder.Sum(w => Convert.ToDouble(w.Price)) +
                           line);
@@ -29,14 +27,11 @@ public class ShopActions
 
     public void PrintUsers(IEnumerable<User> users)
     {
-        Console.WriteLine($" {" Name",20} ▐ {"Age",7} ▐ {"ID"}");
+        Console.WriteLine($" {" Name",20} | {"Age",7} | {"ID"}");
         for (var i = 0; i < users.Count(); i++)
-        {
-            Console.WriteLine("{3,2} ▐ {0,20} ▐ {1,7} ▐ {2}", users.ElementAt(i).Name,
+            Console.WriteLine("{3,2} | {0,20} | {1,7} | {2}", users.ElementAt(i).Name,
                 users.ElementAt(i).Age,
-                users.ElementAt(i).Id,
-                i + 1);
-        }
+                users.ElementAt(i).Id, i + 1);
     }
 
     public void AddUserConsole(IEnumerable<User> users)
@@ -76,19 +71,16 @@ public class ShopActions
         Console.Write("Choose goods in order: ");
         var wareNumberChoice = Convert.ToInt16(Console.ReadLine());
         users.ElementAt(userChoice - 1).Order.Goods.RemoveAt(wareNumberChoice - 1);
-        return;
     }
 
     public void AddNewGoods(IEnumerable<Goods> goods, IEnumerable<User> users, int userChoice)
     {
         var goodsEnumerable = goods as Goods[] ?? goods.ToArray();
         for (var i = 0; i < goodsEnumerable.Count(); i++)
-        {
             Console.WriteLine("{4,2} | {0,20} | {1,30} | {2,10} | {3} ",
                 goodsEnumerable.ElementAt(i).Category,
                 goodsEnumerable.ElementAt(i).Name,
                 goodsEnumerable.ElementAt(i).Price, goodsEnumerable.ElementAt(i).Id, i + 1);
-        }
 
         Console.Write("Choose good: ");
         var wareNumberInShop = Convert.ToInt16(Console.ReadLine());
@@ -106,6 +98,5 @@ public class ShopActions
         {
             users.ElementAt(userChoice - 1).AddGoods(goodsEnumerable.ElementAt(wareNumberInShop - 1));
         }
-        
     }
 }

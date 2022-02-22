@@ -1,6 +1,6 @@
-namespace Task5;
-
 using Bogus;
+
+namespace ShopSimulator;
 
 public class FakeData
 {

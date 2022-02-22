@@ -1,11 +1,11 @@
-namespace Task5;
+namespace ShopSimulator;
 
 public class Order
 {
-    public List<Goods> Goods { get; set; }
-
     public Order()
     {
         Goods = new List<Goods>();
     }
+
+    public List<Goods> Goods { get; }
 }
