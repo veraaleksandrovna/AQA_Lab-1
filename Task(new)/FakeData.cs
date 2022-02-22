@@ -1,5 +1,4 @@
 using Bogus;
-
 namespace Task;
 
 public class FakeData
