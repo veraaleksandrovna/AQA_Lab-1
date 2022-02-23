@@ -76,7 +76,7 @@ namespace DriverAndCars
         {
             foreach (var vehicle in vehicles)
             {
-                Console.WriteLine($"{vehicle.Model} | {vehicle.Year} | {vehicle.Capacity:F1} | {vehicle.FuelType} | {vehicle.Owner}");
+                Console.WriteLine($"{vehicle.Model} | {vehicle.Year} | {vehicle.Capacity:F1} | {vehicle.FuelType} | {vehicle.MaxSpeed}");
             }
         }
 
