@@ -29,15 +29,17 @@ public class FakeData
         return driverList;
     }
 
-    public static IEnumerable<Vehicle> CreateVehicle(List<Driver> drivers, int count)
+    public static List<Vehicle> CreateVehicle(List<Driver> drivers, int count)
     {
-        var vehicleFake = new Faker<Vehicle>("en")
+        var vehicleFake = new Faker<Vehicle>(language)
             .RuleFor(v => v.Model, v => v.PickRandom<Model>())
             .RuleFor(v => v.Year, v => v.Random.Int(minYear, maxYear))
             .RuleFor(f => f.Capacity, f => f.Random.Double(minCapacity, maxCapacity))
             .RuleFor(f => f.Power, f => f.Random.Int(minPower, maxPower))
-            .RuleFor(f => f.FType, f => f.PickRandom<FuelType>())
+            .RuleFor(f => f.FuelType, f => f.PickRandom<FuelType>())
             .RuleFor(f => f.MaxSpeed, f => f.Random.Int(minSpeed, maxSpeed));
-        return vehicleFake.Generate(count);
+        var vehicleList = vehicleFake.Generate(count);
+
+        return vehicleList;
     }
 }

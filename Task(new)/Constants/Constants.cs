@@ -2,6 +2,10 @@ namespace DriverAndCars;
 
 public class Constants
 {
+    public static readonly string language = "en";
+
+    public static readonly int ammount = 3;
+    
     public static readonly int minYear = 1999;
     public static readonly int maxYear = 2021;
 

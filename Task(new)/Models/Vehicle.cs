@@ -2,21 +2,17 @@ namespace DriverAndCars;
 
 public class Vehicle
 {
-    public Vehicle(FuelType fType, int power, int maxSpeed, double capacity, int year, Model model)
-    {
-        FType = fType;
-        Power = power;
-        MaxSpeed = maxSpeed;
-        Capacity = capacity;
-        Year = year;
-        Model = model;
-    }
+    public Model Model { get; set;}
 
-    public Model Model { get; }
-    public int Year { get; }
+    public int Year { get; set;}
+
     public Driver Owner { get; init; }
-    public double Capacity { get; }
-    public int Power { get; }
-    public FuelType FType { get; }
-    public int MaxSpeed { get; }
+
+    public double Capacity { get; set; }
+
+    public int Power { get; set;}
+
+    public FuelType FType { get; set; }
+
+    public int MaxSpeed { get;set; }
 }
