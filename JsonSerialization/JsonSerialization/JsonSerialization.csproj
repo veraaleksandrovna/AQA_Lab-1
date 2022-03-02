@@ -8,18 +8,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AddConsoleExtension" Version="1.0.1"/>
-        <PackageReference Include="ConsoleExtensions" Version="1.0.0"/>
-        <PackageReference Include="Json.Net" Version="1.0.33"/>
-        <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0-preview.1.22076.8"/>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
-        <PackageReference Include="NLog" Version="5.0.0-rc2"/>
-        <PackageReference Include="SimpleLogger" Version="1.0.0"/>
+        <PackageReference Include="AddConsoleExtension" Version="1.0.1" />
+        <PackageReference Include="ConsoleExtensions" Version="1.0.0" />
+        <PackageReference Include="Json.Net" Version="1.0.33" />
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0-preview.1.22076.8" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="NLog" Version="5.0.0-rc2" />
+        <PackageReference Include="SimpleLogger" Version="1.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="bin\Debug\net6.0\appsettings.json"/>
-        <None Include="bin\Debug\net6.0\Data\appsettings.json"/>
+        <None Include="bin\Debug\net6.0\appsettings.json" />
+        <None Include="bin\Debug\net6.0\Data\appsettings.json" />
     </ItemGroup>
 
 </Project>

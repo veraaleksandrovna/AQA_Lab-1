@@ -1,6 +1,7 @@
-namespace JsonSerialization.CustomExceptions;
+﻿using System;
 
-[Serializable]
+namespace JsonSerialization.Exceptions;
+
 public class PhoneNotFoundException : Exception
 {
     public PhoneNotFoundException()
@@ -8,6 +9,10 @@ public class PhoneNotFoundException : Exception
     }
 
     public PhoneNotFoundException(string message) : base(message)
+    {
+    }
+
+    public PhoneNotFoundException(string message, Exception inner) : base(message, inner)
     {
     }
 }

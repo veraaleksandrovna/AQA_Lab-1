@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KxhGCIDR3Xk13CSKztRBgjCu6Fcm6a3fs+NCMxcPVKMRpFAh3LplMXZ3srEPRhCTPdHJa2O0yylreyK8/age3A==",
+  "dgSpecHash": "UibJ0BH7BtTRVnv0/qHHibQ6dBqji1xJJm7i/JHVKH4OHR3Ohgcz06y/Zu3qfEJbpHdyLwMuc0ud7LcNIlmndw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ASUS\\RiderProjects\\JsonSerialization\\JsonSerialization\\JsonSerialization.csproj",
+  "projectFilePath": "C:\\Users\\ASUS\\RiderProjects\\AQA_Lab-1\\JsonSerialization\\JsonSerialization\\JsonSerialization.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ASUS\\.nuget\\packages\\addconsoleextension\\1.0.1\\addconsoleextension.1.0.1.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\consoleextensions\\1.0.0\\consoleextensions.1.0.0.nupkg.sha512",

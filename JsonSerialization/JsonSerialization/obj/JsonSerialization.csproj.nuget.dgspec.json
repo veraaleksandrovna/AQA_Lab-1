@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS\\RiderProjects\\JsonSerialization\\JsonSerialization\\JsonSerialization.csproj": {}
+    "C:\\Users\\ASUS\\RiderProjects\\AQA_Lab-1\\JsonSerialization\\JsonSerialization\\JsonSerialization.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS\\RiderProjects\\JsonSerialization\\JsonSerialization\\JsonSerialization.csproj": {
+    "C:\\Users\\ASUS\\RiderProjects\\AQA_Lab-1\\JsonSerialization\\JsonSerialization\\JsonSerialization.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\JsonSerialization\\JsonSerialization\\JsonSerialization.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\AQA_Lab-1\\JsonSerialization\\JsonSerialization\\JsonSerialization.csproj",
         "projectName": "JsonSerialization",
-        "projectPath": "C:\\Users\\ASUS\\RiderProjects\\JsonSerialization\\JsonSerialization\\JsonSerialization.csproj",
+        "projectPath": "C:\\Users\\ASUS\\RiderProjects\\AQA_Lab-1\\JsonSerialization\\JsonSerialization\\JsonSerialization.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\RiderProjects\\JsonSerialization\\JsonSerialization\\obj\\",
+        "outputPath": "C:\\Users\\ASUS\\RiderProjects\\AQA_Lab-1\\JsonSerialization\\JsonSerialization\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"

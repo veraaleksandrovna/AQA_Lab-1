@@ -1,51 +1,42 @@
-using JsonSerialization.Models;
-using SimpleLogger;
-using SimpleLogger.Logging.Handlers;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using Newtonsoft.Json;
 
-namespace JsonSerialization;
-
-public class Program
+namespace JsonSerialization
 {
-    private const string FileName = "appsettings.json";
-
-    private const string ChequeFile = "info.json";
-
-    public static void Main(string[] args)
+    public class Program
     {
-        Logger.LoggerHandlerManager.AddHandler(new ConsoleLoggerHandler());
-        Logger.DefaultLevel = Logger.Level.Fine;
+        public static JsonShops.AllShops shops;
 
-        var shops = JsonHandler.Deserialzation<Shops>(FileName) as Shops;
+        public static List<Phone> foundPhones;
 
-        var menu = new WorkWithShop(shops.ListShops);
+        public static void Main(string[] args)
+        {
+            string json;
+            using (var streamReader = new StreamReader("appsettings.json"))
+            {
+                json = streamReader.ReadToEnd();
+            }
 
-        menu.ShowAllShops();
-        var phone = menu.ProcessUserInput();
-        menu.CheckingAvailability(phone, ChequeFile);
+            shops = JsonConvert.DeserializeObject<JsonShops.AllShops>(json);
+            Console.WriteLine();
 
-        /* var shops = JsonHandler.Deserialization<Shops>(FileName) as Shops;
-         var shopsHandler = new WorkWithShop(shops.ListShops);
-         var phones = new Phone();
-         
-         Logger.Log("Choose menu item");
-         Logger.Log("1. Show all phones");
-         Logger.Log("2.Count phones");
-         Logger.Log("3.Choose phone");
+            foreach (var shop in shops.Shops)
+            {
+                shop.Report();
+            }
 
-         var choice = Console.ReadLine();
-         switch (choice)
-         {
-             case  "1":
-                 shopsHeandler.WorkWithPhones(phones);
-                 break;
-             case "2":
-                 shopsHeandler.WorkWithShops();
-                 break;
-             case "3":
-                 shopsHeandler.CheckPhone(phones,fileName);
-                 break;
-         }*/
-
-        Console.ReadKey();
+            var chosenPhone = shops.FindPhone();
+            var chosenShop = shops.ChooseShop(chosenPhone);
+            var selectedPhone = foundPhones.Find(p => p.Model == chosenPhone && p.ShopId == chosenShop.Id);
+            var order = new Order(selectedPhone, chosenShop);
+            var json2 = JsonConvert.SerializeObject(order);
+            using (StreamWriter file = File.CreateText(@"C:\order.txt"))
+            {
+                file.Write(json2);
+                file.Close();
+            }
+        }
     }
 }
