@@ -6,7 +6,7 @@ using NLog;
 namespace JsonSerialization
 {
     [Serializable]
-     public class ShopsCollection
+    public class ShopsCollection
     {
         public class AllShops
         {
