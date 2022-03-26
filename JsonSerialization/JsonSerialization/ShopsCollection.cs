@@ -6,7 +6,7 @@ using NLog;
 namespace JsonSerialization
 {
     [Serializable]
-    public class JsonShops
+     public class ShopsCollection
     {
         public class AllShops
         {
@@ -14,21 +14,22 @@ namespace JsonSerialization
 
             public List<Shop> Shops { get; set; }
 
-
-            public string ShopByNumber(int shopId)
+            public string GetShopByNumber(int shopId)
             {
-                var shop = Shops.Find(s => s.Id == shopId);
-                return shop.Name;
+                return Shops.Find(shop => shop.Id == shopId).Name;
             }
 
             public Shop ChooseShop(string phoneChoice)
             {
-                string shopChoice;
+                return FoundShop(phoneChoice);
+            }
 
+            private Shop FoundShop(string phoneChoice)
+            {
                 do
                 {
                     logger.Info($"Choose shop {phoneChoice}?");
-                    shopChoice = Console.ReadLine();
+                    var shopChoice = Console.ReadLine();
                     var foundShop = Shops.Find(s => s.Name == shopChoice);
                     if (foundShop != null)
                     {
@@ -50,8 +51,8 @@ namespace JsonSerialization
             public string FindPhone()
             {
                 string phoneChoice;
-                var found = new List<Phone>();
-                var phone = new Phone();
+                var foundPhones = new List<Phone>();
+                var phoneFind = new Phone();
                 do
                 {
                     try
@@ -61,14 +62,14 @@ namespace JsonSerialization
 
                         foreach (var shop in Shops)
                         {
-                            phone = shop.Phones.Find(p => p.Model == phoneChoice);
-                            if (phone != null)
+                            phoneFind = shop.Phones.Find(p => p.Model == phoneChoice);
+                            if (phoneFind != null)
                             {
-                                found.Add(phone);
+                                foundPhones.Add(phoneFind);
                             }
                         }
 
-                        Program.foundPhones = found;
+                        Program.foundPhones = foundPhones;
 
                         if (Program.foundPhones.Count == 0)
                         {

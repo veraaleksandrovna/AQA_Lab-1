@@ -7,7 +7,7 @@ namespace JsonSerialization
 {
     public class Program
     {
-        public static JsonShops.AllShops shops;
+        public static ShopsCollection.AllShops shops;
 
         public static List<Phone> foundPhones;
 
@@ -19,8 +19,7 @@ namespace JsonSerialization
                 json = streamReader.ReadToEnd();
             }
 
-            shops = JsonConvert.DeserializeObject<JsonShops.AllShops>(json);
-            Console.WriteLine();
+            ReadFile(json);
 
             foreach (var shop in shops.Shops)
             {
@@ -37,6 +36,12 @@ namespace JsonSerialization
                 file.Write(json2);
                 file.Close();
             }
+        }
+
+        private static void ReadFile(string json)
+        {
+            shops = JsonConvert.DeserializeObject<ShopsCollection.AllShops>(json);
+            Console.WriteLine();
         }
     }
 }
