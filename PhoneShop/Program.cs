@@ -12,6 +12,7 @@ internal class Program
         string json;
         var loggerFactory = LoggerFactory.Create(config => { config.AddConsole(); });
         var logger = loggerFactory.CreateLogger<RootObject>();
+        
         try
         {
             using (var sr = new StreamReader(path))
@@ -23,6 +24,7 @@ internal class Program
             {
                 TypeNameHandling = TypeNameHandling.All
             };
+            
             var shops = JsonConvert.DeserializeObject<RootObject>(json, settings);
             shops.DispalyIfAvaliable();
             shops.WantToBuyPhone();

@@ -6,8 +6,9 @@ namespace PhoneShop.Models;
 public class RootObject
 {
     public Shop[] Shops { get; }
-    private int countP;
-    private int countS;
+    
+    private int countPhones;
+    private int countShops;
     private static ILoggerFactory loggerFactory = LoggerFactory.Create(config => { config.AddConsole(); });
     private ILogger<RootObject> logger = loggerFactory.CreateLogger<RootObject>();
 
@@ -19,7 +20,7 @@ public class RootObject
         {
             logger.LogInformation(
                 $"[Id] [Name]\n {Shops[i].Id} {Shops[i].Name}\n [Description]\n" +
-                $" {Shops[i].Description}\n [Amount of phones in stock]");
+                $" {Shops[i].Description}\n [Amount of phones in stock]")
             for (var j = 0; j < Shops[i].Phones.Length; j++)
                 if (Shops[i].Phones[j].OperationSystemType == "IOS")
                     iosCount++;
@@ -49,8 +50,8 @@ public class RootObject
                     }
                     else
                     {
-                        countP++;
-                        if (countP < 2)
+                        countPhones++;
+                        if (countPhones < 2)
                         {
                             logger.LogInformation("This mobile phone is out of stock. Choose another model.");
                             WantToBuyPhone();
@@ -66,7 +67,7 @@ public class RootObject
                     logger.LogError("This mobile phone is out of stock.");
                 }
 
-        if (purchase.Count == 0 && countP < 2)
+        if (purchase.Count == 0 && countPhones < 2)
         {
             logger.LogInformation("This mobile phone is not found");
             WantToBuyPhone();
@@ -112,8 +113,8 @@ public class RootObject
         if (isFound == false)
             try
             {
-                countS++;
-                if (countS < 2)
+                countShops++;
+                if (countShops < 2)
                 {
                     logger.LogInformation("This shop is not found. Choose another shop.");
                     WantToBuyShop(purchase);
