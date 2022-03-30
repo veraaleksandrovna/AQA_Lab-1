@@ -8,8 +8,7 @@ namespace Locators;
 public class LocatorsTests
 {
     private IWebDriver _driver;
-   // private string path = "C:\Users\ASUS\RiderProjects\Locators\Locators\Resources\index.html";
-    
+
     [OneTimeSetUp]
     public void Setup()
     {
