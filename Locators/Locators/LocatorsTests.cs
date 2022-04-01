@@ -13,8 +13,7 @@ public class LocatorsTests
     public void Setup()
     {
         _driver = new ChromeDriver();
-        //NOTE: Change to your path
-        _driver.Navigate().GoToUrl(@"C:\Users\ASUS\RiderProjects\Locators\Locators\Resources\index.html");
+        _driver.Navigate().GoToUrl(PathToFile.FilePath);
     }
 
     [Test]
