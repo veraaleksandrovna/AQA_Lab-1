@@ -11,7 +11,7 @@ internal class Program
         var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"JSonFiles\appsettings.json");
         string json;
         var loggerFactory = LoggerFactory.Create(config => { config.AddConsole(); });
-        var logger = loggerFactory.CreateLogger<RootObject>();
+        var logger = loggerFactory.CreateLogger<ShopService>();
         
         try
         {
@@ -25,7 +25,7 @@ internal class Program
                 TypeNameHandling = TypeNameHandling.All
             };
             
-            var shops = JsonConvert.DeserializeObject<RootObject>(json, settings);
+            var shops = JsonConvert.DeserializeObject<ShopService>(json, settings);
             shops.DispalyIfAvaliable();
             shops.WantToBuyPhone();
         }

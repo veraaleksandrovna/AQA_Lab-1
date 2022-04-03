@@ -3,14 +3,14 @@ using PhoneShop.CustomExceptions;
 
 namespace PhoneShop.Models;
 
-public class RootObject
+public class ShopService
 {
     public Shop[] Shops { get; }
     
     private int countPhones;
     private int countShops;
     private static ILoggerFactory loggerFactory = LoggerFactory.Create(config => { config.AddConsole(); });
-    private ILogger<RootObject> logger = loggerFactory.CreateLogger<RootObject>();
+    private ILogger<ShopService> logger = loggerFactory.CreateLogger<ShopService>();
 
     public void DispalyIfAvaliable()
     {
@@ -20,7 +20,7 @@ public class RootObject
         {
             logger.LogInformation(
                 $"[Id] [Name]\n {Shops[i].Id} {Shops[i].Name}\n [Description]\n" +
-                $" {Shops[i].Description}\n [Amount of phones in stock]")
+                $" {Shops[i].Description}\n [Amount of phones in stock]");
             for (var j = 0; j < Shops[i].Phones.Length; j++)
                 if (Shops[i].Phones[j].OperationSystemType == "IOS")
                     iosCount++;
