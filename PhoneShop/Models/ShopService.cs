@@ -58,11 +58,11 @@ public class ShopService
                         }
                         else
                         {
-                            throw new IsNotAvailable();
+                            throw new PhoneIsNotAvailableException();
                         }
                     }
                 }
-                catch (IsNotAvailable)
+                catch (PhoneIsNotAvailableException)
                 {
                     logger.LogError("This mobile phone is out of stock.");
                 }
@@ -121,10 +121,10 @@ public class ShopService
                 }
                 else
                 {
-                    throw new NotFoundException();
+                    throw new ShopNotFoundException();
                 }
             }
-            catch (NotFoundException)
+            catch (ShopNotFoundException)
             {
                 logger.LogError("This shop is not found.");
             }
