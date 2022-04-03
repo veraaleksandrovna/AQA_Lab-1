@@ -14,9 +14,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Update="JSonFiles\appsettings.json">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
+      <None Update="JSonFiles\appsettings.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

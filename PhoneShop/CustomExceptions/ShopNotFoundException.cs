@@ -1,18 +1,23 @@
-﻿namespace PhoneShop.CustomExceptions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-internal class ShopNotFoundException : Exception
+namespace PhoneShop
 {
-    public ShopNotFoundException()
+    class ShopNotFoundException : Exception
     {
-    }
-
-    public ShopNotFoundException(string message)
-        : base(message)
-    {
-    }
-
-    public ShopNotFoundException(string message, Exception inner)
-        : base(message, inner)
-    {
+        public ShopNotFoundException()
+        {
+        }
+        public ShopNotFoundException(string message)
+            : base(message)
+        {
+        }
+        public ShopNotFoundException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
     }
 }
