@@ -15,9 +15,9 @@ public class LaminateCalculatorPage
     private const string BorderValueBias = "2500";
     private const string BorderValueWallDist = "100";
 
-    private readonly IWebDriver _driver;
+    private readonly IWebDriver? _driver;
 
-    public LaminateCalculatorPage(IWebDriver driver)
+    public LaminateCalculatorPage(IWebDriver? driver)
     {
         _driver = driver;
     }

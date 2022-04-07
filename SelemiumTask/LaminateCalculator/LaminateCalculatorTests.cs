@@ -7,8 +7,15 @@ namespace SelemiumTask.LaminateCalculator;
 
 public class LaminateCalculatorTests
 {
-    private IWebDriver _driver;
-    private LaminateCalculatorPage _laminateCalculatorPage;
+    private const string ExpectedSLam = "145.04";
+    private const string ExpectedLCount = "31";
+    private const string ExpectedLPacks = "1";
+    private const string ExpectedLPrice = "500000000";
+    private const string ExpectedLOver = "69";
+    private const string ExpectedLTrash = "7";
+
+    private IWebDriver? _driver;
+    private LaminateCalculatorPage? _laminateCalculatorPage;
 
     [SetUp]
     public void SetUp()
@@ -42,12 +49,12 @@ public class LaminateCalculatorTests
         var actualLOver = _laminateCalculatorPage.GetActualLOver();
         var actualLTrash = _laminateCalculatorPage.GetActualLTrash();
 
-        Assert.AreEqual("145.04", actualSLam);
-        Assert.AreEqual("31", actualLCount);
-        Assert.AreEqual("1", actualLPacks);
-        Assert.AreEqual("500000000", actualLPrice);
-        Assert.AreEqual("69", actualLOver);
-        Assert.AreEqual("7", actualLTrash);
+        Assert.AreEqual(ExpectedSLam, actualSLam);
+        Assert.AreEqual(ExpectedLCount, actualLCount);
+        Assert.AreEqual(ExpectedLPacks, actualLPacks);
+        Assert.AreEqual(ExpectedLPrice, actualLPrice);
+        Assert.AreEqual(ExpectedLOver, actualLOver);
+        Assert.AreEqual(ExpectedLTrash, actualLTrash);
     }
 
     [TearDown]
