@@ -17,7 +17,7 @@ public class LocatorsTests
     }
 
     [Test]
-    public void CssLocatorsCheckingTest()
+    public void CssLocators_Display_Test()
     {
         Assert.Multiple(() =>
             {
@@ -36,7 +36,7 @@ public class LocatorsTests
     }
 
     [Test]
-    public void XPathCheckingTest()
+    public void XPath_Disply_Test()
     {
         Assert.Multiple(() =>
         {
