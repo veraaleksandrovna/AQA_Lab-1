@@ -1,33 +1,27 @@
 ﻿using System.Threading;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+using SelemiumTask.BaseClasses;
 
 namespace SelemiumTask.LaminateCalculator;
 
-public class LaminateCalculatorTests
+public class LaminateCalculatorTests : BaseTest
 {
+    private const string PathUrl = "https://masterskayapola.ru/kalkulyator/laminata.html";
+    
     private const string ExpectedSLam = "145.04";
     private const string ExpectedLCount = "31";
     private const string ExpectedLPacks = "1";
     private const string ExpectedLPrice = "500000000";
     private const string ExpectedLOver = "69";
     private const string ExpectedLTrash = "7";
-
-    private IWebDriver? _driver;
+    
     private LaminateCalculatorPage? _laminateCalculatorPage;
-
-    [SetUp]
-    public void SetUp()
-    {
-        _driver = new ChromeDriver();
-        _laminateCalculatorPage = new LaminateCalculatorPage(_driver);
-        _driver.Navigate().GoToUrl(@"https://masterskayapola.ru/kalkulyator/laminata.html");
-    }
-
+    
     [Test]
-    public void CalculationLaminateSmokeTest()
+    public void LaminateCalculatorCheck_Data_Test()
     {
+        _driver.Navigate().GoToUrl(PathUrl);
+        
         _laminateCalculatorPage
             .CalcLamWidthInputKey()
             .CalcLamHeightInputKey()
@@ -55,11 +49,5 @@ public class LaminateCalculatorTests
         Assert.AreEqual(ExpectedLPrice, actualLPrice);
         Assert.AreEqual(ExpectedLOver, actualLOver);
         Assert.AreEqual(ExpectedLTrash, actualLTrash);
-    }
-
-    [TearDown]
-    public void TearDown()
-    {
-        _driver.Quit();
     }
 }

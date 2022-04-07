@@ -1,30 +1,29 @@
-using System;
 using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using SelemiumTask.BaseClasses;
 
 namespace SelemiumTask.RehauCalculator;
 
-public class RehauCalculatorTests
+public class RehauCalculatorTests : BaseTest
 {
-    private IWebDriver _driver;
-
-    [OneTimeSetUp]
-    public void OneTimeSetup()
-    {
-        _driver = new ChromeDriver();
-
-        _driver.Navigate().GoToUrl(@"https://kermi-fko.ru/raschety/Calc-Rehau-Solelec.aspx");
-
-        Console.WriteLine("Driver is initialized");
-        Console.WriteLine("Page opened");
-    }
-
+    private const string PathUrl = "https://kermi-fko.ru/raschety/Calc-Rehau-Solelec.aspx";
+    
+    private const string WidthValue = "4";
+    private const string LengthValue = "6";
+    private const string RoomTypeDropDownValue = "2";
+    private const string HeatingTypeDropDownValue = "2";
+    private const string WatLossValue = "150";
+        
+    private const string ExpectedFloorCablePower = "158";
+    private const string ExpectedSecondFloorCablePower = "7";
+    
     [Test]
-    public void CalculatorRehauSmokeTest()
+    public void CalculatorRehau_Data_Test()
     {
+        _driver.Navigate().GoToUrl(PathUrl);
+        
         var width = _driver.FindElement(By.Id("el_f_width"));
         var length = _driver.FindElement(By.Id("el_f_lenght"));
         var watLoses = _driver.FindElement(By.Id("el_f_losses"));
@@ -35,11 +34,11 @@ public class RehauCalculatorTests
         var roomTypeDropDown = new SelectElement(roomType);
         var heatingTypeDropDown = new SelectElement(heatingType);
 
-        width.SendKeys("4");
-        length.SendKeys("6");
-        roomTypeDropDown.SelectByValue("2");
-        heatingTypeDropDown.SelectByValue("2");
-        watLoses.SendKeys("150");
+        width.SendKeys(WidthValue);
+        length.SendKeys(LengthValue);
+        roomTypeDropDown.SelectByValue(RoomTypeDropDownValue);
+        heatingTypeDropDown.SelectByValue(HeatingTypeDropDownValue);
+        watLoses.SendKeys(WatLossValue);
 
         count.Click();
 
@@ -50,14 +49,7 @@ public class RehauCalculatorTests
 
         Thread.Sleep(3000);
 
-        Assert.AreEqual("158", actualFloorCablePower.GetAttribute("value"));
-        Assert.AreEqual("7", actualSecondFloorCablePower.GetAttribute("value"));
-    }
-
-    [OneTimeTearDown]
-    public void OneTimeTearDown()
-    {
-        _driver.Quit();
-        Console.WriteLine("Page closed");
+        Assert.AreEqual(ExpectedFloorCablePower, actualFloorCablePower.GetAttribute("value"));
+        Assert.AreEqual(ExpectedSecondFloorCablePower, actualSecondFloorCablePower.GetAttribute("value"));
     }
 }
