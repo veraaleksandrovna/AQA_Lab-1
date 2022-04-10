@@ -7,14 +7,16 @@ namespace AlertsWaits.Services;
 
 public static class Configurator
 {
-    private static readonly Lazy<IConfiguration> s_configuration;
-    public static IConfiguration Configuration => s_configuration.Value;
+    private static readonly Lazy<IConfiguration> SConfiguration;
+    public static IConfiguration Configuration => SConfiguration.Value;
     public static string? BrowserType => Configuration[nameof(BrowserType)];
     public static int WaitTimeout => int.Parse(Configuration[nameof(WaitTimeout)]);
+    public static string HerokuappUrl => Configuration[nameof(HerokuappUrl)];
+    public static string OnlinerUrl => Configuration[nameof(OnlinerUrl)];
 
     static Configurator()
     {
-        s_configuration = new Lazy<IConfiguration>(BuildConfiguration);
+        SConfiguration = new Lazy<IConfiguration>(BuildConfiguration);
     }
 
     private static IConfiguration BuildConfiguration()

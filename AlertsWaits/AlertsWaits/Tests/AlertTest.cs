@@ -2,14 +2,11 @@ using System;
 using AlertsWaits.Pages;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.DevTools.V94.Input;
 
 namespace AlertsWaits.Tests;
 
-public class AlertTest : BaseTest
+public class AlertTests : BaseTest
 {
-    private const string PathUrl = "https://the-internet.herokuapp.com/javascript_alerts";
-
     private const string KeyJsPromt = "Great site";
     
     private const string ExpectedJsAlert = "You successfully clicked an alert";
@@ -21,74 +18,87 @@ public class AlertTest : BaseTest
     [Test]
     public void Test_JS_Alert()
     { 
-        Driver.Navigate().GoToUrl(PathUrl);
-        
-        Driver.FindElement(By.CssSelector("button[onclick='jsAlert()']")).Click();
+        var alertPage = new AlertPage(Driver, true);
+
+        alertPage.JsAlertButton.Click();
 
         IAlert alert = Driver.SwitchTo().Alert();
-        string alertText = alert.Text;
+        var alertText = alert.Text;
         Console.Out.Write(alertText);
         alert.Accept();
 
-        var actualJsAlert = Driver.FindElement(By.Id("result")).Text;
+        var actualJsAlert = GetActualResult(alertPage);
         Assert.AreEqual(ExpectedJsAlert, actualJsAlert);
     }
 
     [Test]
     public void Test_JS_ConfirmationAccept()
     {
-        Driver.Navigate().GoToUrl(PathUrl);
-        
-        Driver.FindElement(By.CssSelector("button[onclick='jsConfirm()']")).Click();
+        var alertPage = new AlertPage(Driver, true);
+
+        alertPage.JsConfirmButton.Click();
 
         IAlert confirmationAlert = Driver.SwitchTo().Alert();
+        var confirmationAcceptAlertText = confirmationAlert.Text;
+        Console.Out.Write(confirmationAcceptAlertText);    
         confirmationAlert.Accept();
 
-        var actualJsConfirmationAccept = Driver.FindElement(By.Id("result")).Text;
+        var actualJsConfirmationAccept = GetActualResult(alertPage);
         Assert.AreEqual(ExpectedJsConfirmationAccept, actualJsConfirmationAccept);
     }
     
     [Test]
     public void Test_JS_ConfirmationDismiss()
     {
-        Driver.Navigate().GoToUrl(PathUrl);
-        
-        Driver.FindElement(By.CssSelector("button[onclick='jsConfirm()']")).Click();
+        var alertPage = new AlertPage(Driver, true);
+
+        alertPage.JsConfirmButton.Click();;
 
         IAlert confirmationAlert = Driver.SwitchTo().Alert();
+        var confirmationDismissAlertText = confirmationAlert.Text;
+        Console.Out.Write(confirmationDismissAlertText);
         confirmationAlert.Dismiss();
 
-        var actualJsConfirmationDismiss = Driver.FindElement(By.Id("result")).Text;
+        var actualJsConfirmationDismiss = GetActualResult(alertPage);
         Assert.AreEqual(ExpectedJsConfirmationDismiss, actualJsConfirmationDismiss);
     }
     
     [Test]
     public void Test_JS_PromtAccept()
     {
-        Driver.Navigate().GoToUrl(PathUrl);
-        
-        Driver.FindElement(By.CssSelector("button[onclick='jsPrompt()']")).Click();
+        var alertPage = new AlertPage(Driver, true);
+
+        alertPage.JsPromptButton.Click();
 
         IAlert promptAlert  = Driver.SwitchTo().Alert();
+        var promtAlertText = promptAlert.Text;
+        Console.Out.Write(promtAlertText);
         promptAlert.SendKeys(KeyJsPromt);
         promptAlert.Accept();
 
-        var actualJsPromtAccept = Driver.FindElement(By.Id("result")).Text;
+        var actualJsPromtAccept = GetActualResult(alertPage);
         Assert.AreEqual(ExpectedJsPromtAccept, actualJsPromtAccept);
     }
     
     [Test]
     public void Test_JS_PromtDismiss()
     {
-        Driver.Navigate().GoToUrl(PathUrl);
-        
-        Driver.FindElement(By.CssSelector("button[onclick='jsPrompt()']")).Click();
+        var alertPage = new AlertPage(Driver, true);
+
+        alertPage.JsPromptButton.Click();
 
         IAlert promptAlert  = Driver.SwitchTo().Alert();
+        var promtAlertText = promptAlert.Text;
+        Console.Out.Write(promtAlertText); 
         promptAlert.Dismiss();
 
-        var actualJsPromtDismiss = Driver.FindElement(By.Id("result")).Text;
+        var actualJsPromtDismiss = GetActualResult(alertPage);
         Assert.AreEqual(ExpectedJsPromtDismiss, actualJsPromtDismiss);
+    }
+    
+    private static string GetActualResult(AlertPage alertPage)
+    {
+        return alertPage.Result.Text;
     }
     
 }
