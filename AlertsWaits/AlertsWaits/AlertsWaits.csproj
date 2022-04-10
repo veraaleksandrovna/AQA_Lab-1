@@ -28,4 +28,12 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Tests\WindowTest.cs" />
+      <Compile Remove="Tests\OnlinerTvTests.cs" />
+      <Compile Remove="Steps\AddItemsToComparisonStep.cs" />
+      <Compile Remove="Pages\TvPage.cs" />
+      <Compile Remove="Pages\ComparisonPage.cs" />
+    </ItemGroup>
+
 </Project>
