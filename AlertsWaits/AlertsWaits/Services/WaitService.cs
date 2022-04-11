@@ -79,4 +79,22 @@ public class WaitService
             return true;
         }
     }
+    
+    public bool GetInvisibleElement(By by)
+    {
+        try
+        {
+            return _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.InvisibilityOfElementLocated(by));
+            
+        }
+        catch (Exception e)
+        {
+            throw new AssertionException(e.Message, e);
+        }
+    }
+    
+    public IReadOnlyCollection<IWebElement> WaitAllElementIsVisible(By by)
+    {
+        return _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.PresenceOfAllElementsLocatedBy(by));
+    }
 }

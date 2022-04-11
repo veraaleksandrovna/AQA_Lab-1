@@ -12,7 +12,7 @@ public static class Configurator
     public static string? BrowserType => Configuration[nameof(BrowserType)];
     public static int WaitTimeout => int.Parse(Configuration[nameof(WaitTimeout)]);
     public static string HerokuappUrl => Configuration[nameof(HerokuappUrl)];
-    public static string OnlinerUrl => Configuration[nameof(OnlinerUrl)];
+    public static string CatalogOnlinerUrl => Configuration[nameof(CatalogOnlinerUrl)];
 
     static Configurator()
     {
