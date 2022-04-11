@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using OpenQA.Selenium;
 using PageObject.Services;
 
