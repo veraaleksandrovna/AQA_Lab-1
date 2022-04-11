@@ -1,5 +1,4 @@
-﻿using Alerts_Waits.Pages;
-using AlertsWaits.Pages;
+﻿using AlertsWaits.Pages;
 using NUnit.Framework;
 using OpenQA.Selenium.Interactions;
 

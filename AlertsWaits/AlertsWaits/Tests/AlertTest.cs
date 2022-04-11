@@ -52,7 +52,7 @@ public class AlertTests : BaseTest
     {
         var alertPage = new AlertPage(Driver, true);
 
-        alertPage.JsConfirmButton.Click();;
+        alertPage.JsConfirmButton.Click();
 
         IAlert confirmationAlert = Driver.SwitchTo().Alert();
         var confirmationDismissAlertText = confirmationAlert.Text;

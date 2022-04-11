@@ -8,7 +8,7 @@ namespace AlertsWaits.Pages;
 public abstract class BasePage
 {
     [ThreadStatic] private static IWebDriver _driver;
-    private const int WAIT_FOR_PAGE_LOADING_TIME = 60;
+    private const int WaitForPageLoadingTime = 60;
     private static WaitService _waitService;
     
     protected abstract void OpenPage();
@@ -33,7 +33,7 @@ public abstract class BasePage
         var secondsCount = 0;
         var isPageOpenedIndicator = IsPageOpened();
 
-        while (!isPageOpenedIndicator && secondsCount < (WAIT_FOR_PAGE_LOADING_TIME / Configurator.WaitTimeout))
+        while (!isPageOpenedIndicator && secondsCount < (WaitForPageLoadingTime / Configurator.WaitTimeout))
         {
             //Thread.Sleep(1000);
             secondsCount++;
