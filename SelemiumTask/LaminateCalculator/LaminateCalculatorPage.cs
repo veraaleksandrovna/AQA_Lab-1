@@ -5,16 +5,6 @@ namespace SelemiumTask.LaminateCalculator;
 
 public class LaminateCalculatorPage
 {
-    private const string BorderValueRoomWidth = "15";
-    private const string BorderValueRoomHeight = "10";
-    private const string BorderValueLamWidth = "5000";
-    private const string BorderValueLamHeight = "1000";
-    private const string BorderValueInPack = "100";
-    private const string BorderValuePrice = "1000000";
-    private const string ValueDirectionDropDown = "По длине комнаты";
-    private const string BorderValueBias = "2500";
-    private const string BorderValueWallDist = "100";
-
     private readonly IWebDriver? _driver;
 
     public LaminateCalculatorPage(IWebDriver? driver)
@@ -51,61 +41,61 @@ public class LaminateCalculatorPage
 
     public LaminateCalculatorPage CalcRoomWidtInputhKey()
     {
-        CalcRoomWidthInput.SendKeys(BorderValueRoomWidth);
+        CalcRoomWidthInput.SendKeys(BorderedValuesLaminate.BorderValueRoomWidth);
         return this;
     }
 
     public LaminateCalculatorPage CalcRoomHeighInputtKey()
     {
-        CalcRoomHeightInput.SendKeys(BorderValueRoomHeight);
+        CalcRoomHeightInput.SendKeys(BorderedValuesLaminate.BorderValueRoomHeight);
         return this;
     }
 
     public LaminateCalculatorPage CalcLamWidthInputKey()
     {
         CalcLamWidthInput.Clear();
-        CalcLamWidthInput.SendKeys(BorderValueLamWidth);
+        CalcLamWidthInput.SendKeys(BorderedValuesLaminate.BorderValueLamWidth);
         return this;
     }
 
     public LaminateCalculatorPage CalcLamHeightInputKey()
     {
         CalcLamHeightInput.Clear();
-        CalcLamHeightInput.SendKeys(BorderValueLamHeight);
+        CalcLamHeightInput.SendKeys(BorderedValuesLaminate.BorderValueLamHeight);
         return this;
     }
 
     public LaminateCalculatorPage CalcInPackInputKey()
     {
         CalcInPackInput.Clear();
-        CalcInPackInput.SendKeys(BorderValueInPack);
+        CalcInPackInput.SendKeys(BorderedValuesLaminate.BorderValueInPack);
         return this;
     }
 
     public LaminateCalculatorPage CalcPriceInputKey()
     {
         CalcPriceInput.Clear();
-        CalcPriceInput.SendKeys(BorderValuePrice);
+        CalcPriceInput.SendKeys(BorderedValuesLaminate.BorderValuePrice);
         return this;
     }
 
     public LaminateCalculatorPage CalcDirectDropDownKey()
     {
-        CalcDirectDropDown.SelectByText(ValueDirectionDropDown);
+        CalcDirectDropDown.SelectByText(BorderedValuesLaminate.ValueDirectionDropDown);
         return this;
     }
 
     public LaminateCalculatorPage CalcBiasInputKey()
     {
         CalcBiasInput.Clear();
-        CalcBiasInput.SendKeys(BorderValueBias);
+        CalcBiasInput.SendKeys(BorderedValuesLaminate.BorderValueBias);
         return this;
     }
 
     public LaminateCalculatorPage CalcWallDistInputKey()
     {
         CalcWallDistInput.Clear();
-        CalcWallDistInput.SendKeys(BorderValueWallDist);
+        CalcWallDistInput.SendKeys(BorderedValuesLaminate.BorderValueWallDist);
         return this;
     }
 
