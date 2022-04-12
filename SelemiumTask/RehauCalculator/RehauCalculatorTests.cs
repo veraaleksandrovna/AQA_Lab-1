@@ -20,7 +20,7 @@ public class RehauCalculatorTests : BaseTest
     private const string ExpectedSecondFloorCablePower = "7";
     
     [Test]
-    public void CalculatorRehau_Data_Test()
+    public void TestCalculatorRehau()
     {
         _driver.Navigate().GoToUrl(PathUrl);
         

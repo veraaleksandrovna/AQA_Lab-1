@@ -16,7 +16,7 @@ public class LaminateCalculatorTests : BaseTest
     private const string ExpectedLTrash = "7";
     
     [Test]
-    public void LaminateCalculatorCheck_Data_Test()
+    public void TestLaminateCalculatorCheck()
     {
         _driver.Navigate().GoToUrl(PathUrl);
         var _laminateCalculatorPage = new LaminateCalculatorPage(_driver);
@@ -32,8 +32,6 @@ public class LaminateCalculatorTests : BaseTest
             .CalcBiasInputKey()
             .CalcWallDistInputKey()
             .ClickCalculationButton();
-
-        Thread.Sleep(3000);
 
         var actualSLam = _laminateCalculatorPage.GetActualSLam();
         var actualLCount = _laminateCalculatorPage.GetActualLCount();
