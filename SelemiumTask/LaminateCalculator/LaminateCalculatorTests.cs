@@ -16,7 +16,7 @@ public class LaminateCalculatorTests : BaseTest
     private const string ExpectedLTrash = "7";
 
     [Test]
-    public void TestLaminateCalculatorCheck()
+    public void TestLaminateCalculator()
     {
         _driver.Navigate().GoToUrl(PathUrl);
         var _laminateCalculatorPage = new LaminateCalculatorPage(_driver);

@@ -32,12 +32,22 @@ public class LaminateCalculatorPage
     private IWebElement CalcBiasInput => _driver.FindElement(By.Name("calc_bias"));
     private IWebElement CalcWallDistInput => _driver.FindElement(By.Name("calc_walldist"));
     private IWebElement CalculationButton => _driver.FindElement(By.ClassName("btn-secondary"));
-    private IWebElement ActualSLam => _driver.FindElement(By.XPath("//*[@id=\"s_lam\"]/b"));
-    private IWebElement ActualLCount => _driver.FindElement(By.XPath("//*[@id=\"l_count\"]/ b"));
-    private IWebElement ActualLPacks => _driver.FindElement(By.XPath("//*[@id=\"l_packs\"]/ b"));
-    private IWebElement ActualLPrice => _driver.FindElement(By.XPath("//*[@id=\"l_price\"]/ b"));
-    private IWebElement ActualLOver => _driver.FindElement(By.XPath("//*[@id=\"l_over\"]/ b"));
-    private IWebElement ActualLTrash => _driver.FindElement(By.XPath("//*[@id=\"l_trash\"]/ b"));
+    private IWebElement ActualSLam => FindElementByXpath("//*[@id=\"s_lam\"]/b");
+    private IWebElement ActualLCount => FindElementByXpath("//*[@id=\"l_count\"]/ b");
+    private IWebElement ActualLPacks => FindElementByXpath("//*[@id=\"l_packs\"]/ b");
+    private IWebElement ActualLPrice => FindElementByXpath("//*[@id=\"l_price\"]/ b");
+    private IWebElement ActualLOver => FindElementByXpath("//*[@id=\"l_over\"]/ b");
+    private IWebElement ActualLTrash => FindElementByXpath("//*[@id=\"l_trash\"]/ b");
+
+    private IWebElement FindElementByXpath(string xpath)
+    {
+        return _driver.FindElement(By.XPath(xpath));
+    }
+    
+    private IWebElement FindElementByName(string name)
+    {
+        return _driver.FindElement(By.XPath(name));
+    }
 
     public LaminateCalculatorPage CalcRoomWidtInputhKey()
     {
