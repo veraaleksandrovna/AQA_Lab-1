@@ -22,15 +22,15 @@ public class LaminateCalculatorPage
         _driver = driver;
     }
 
-    private IWebElement CalcRoomWidthInput => _driver.FindElement(By.Name("calc_roomwidth"));
-    private IWebElement CalcRoomHeightInput => _driver.FindElement(By.Name("calc_roomheight"));
-    private IWebElement CalcLamWidthInput => _driver.FindElement(By.Name("calc_lamwidth"));
-    private IWebElement CalcLamHeightInput => _driver.FindElement(By.Name("calc_lamheight"));
-    private IWebElement CalcInPackInput => _driver.FindElement(By.Name("calc_inpack"));
-    private IWebElement CalcPriceInput => _driver.FindElement(By.Name("calc_price"));
-    private SelectElement CalcDirectDropDown => new(_driver.FindElement(By.Name("calc_direct")));
-    private IWebElement CalcBiasInput => _driver.FindElement(By.Name("calc_bias"));
-    private IWebElement CalcWallDistInput => _driver.FindElement(By.Name("calc_walldist"));
+    private IWebElement CalcRoomWidthInput => FindElementByName("calc_roomwidth");
+    private IWebElement CalcRoomHeightInput => FindElementByName("calc_roomheight");
+    private IWebElement CalcLamWidthInput => FindElementByName("calc_lamwidth");
+    private IWebElement CalcLamHeightInput => FindElementByName("calc_lamheight");
+    private IWebElement CalcInPackInput => FindElementByName("calc_inpack");
+    private IWebElement CalcPriceInput => FindElementByName("calc_price");
+    private SelectElement CalcDirectDropDown => new(FindElementByName("calc_direct"));
+    private IWebElement CalcBiasInput => FindElementByName("calc_bias");
+    private IWebElement CalcWallDistInput => FindElementByName("calc_walldist");
     private IWebElement CalculationButton => _driver.FindElement(By.ClassName("btn-secondary"));
     private IWebElement ActualSLam => FindElementByXpath("//*[@id=\"s_lam\"]/b");
     private IWebElement ActualLCount => FindElementByXpath("//*[@id=\"l_count\"]/ b");
@@ -46,7 +46,7 @@ public class LaminateCalculatorPage
     
     private IWebElement FindElementByName(string name)
     {
-        return _driver.FindElement(By.XPath(name));
+        return _driver.FindElement(By.Name(name));
     }
 
     public LaminateCalculatorPage CalcRoomWidtInputhKey()
