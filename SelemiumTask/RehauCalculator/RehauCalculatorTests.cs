@@ -42,13 +42,9 @@ public class RehauCalculatorTests : BaseTest
 
         count.Click();
 
-        Thread.Sleep(3000);
-
         var actualFloorCablePower = _driver.FindElement(By.Id("floor_cable_power"));
         var actualSecondFloorCablePower = _driver.FindElement(By.Id("spec_floor_cable_power"));
-
-        Thread.Sleep(3000);
-
+        
         Assert.AreEqual(ExpectedFloorCablePower, actualFloorCablePower.GetAttribute("value"));
         Assert.AreEqual(ExpectedSecondFloorCablePower, actualSecondFloorCablePower.GetAttribute("value"));
     }

@@ -15,12 +15,11 @@ public class LaminateCalculatorTests : BaseTest
     private const string ExpectedLOver = "69";
     private const string ExpectedLTrash = "7";
     
-    private LaminateCalculatorPage? _laminateCalculatorPage;
-    
     [Test]
     public void LaminateCalculatorCheck_Data_Test()
     {
         _driver.Navigate().GoToUrl(PathUrl);
+        var _laminateCalculatorPage = new LaminateCalculatorPage(_driver);
         
         _laminateCalculatorPage
             .CalcLamWidthInputKey()
