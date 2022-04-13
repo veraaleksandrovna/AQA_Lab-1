@@ -13,6 +13,9 @@ public static class Configurator
     public static int WaitTimeout => int.Parse(Configuration[nameof(WaitTimeout)]);
     public static string HerokuappUrl => Configuration[nameof(HerokuappUrl)];
     public static string CatalogOnlinerUrl => Configuration[nameof(CatalogOnlinerUrl)];
+    public static string VkUrl => Configuration[nameof(VkUrl)];
+    public static string TwitterUrl => Configuration[nameof(TwitterUrl)];
+    public static string FacebookUrl => Configuration[nameof(FacebookUrl)];
 
     static Configurator()
     {
