@@ -6,7 +6,7 @@ namespace PageObject.Pages;
 public class CheckoutStepOnePage : BasePage
 {
     private const string EndPoint = "/checkout-step-one.html";
-    
+
     private static readonly By TitleBy = By.ClassName("title");
     private static readonly By FirstNameFieldBy = By.Id("first-name");
     private static readonly By LastNameFieldBy = By.Id("last-name");
@@ -17,12 +17,18 @@ public class CheckoutStepOnePage : BasePage
     {
     }
 
+    public IWebElement Title => WaitService.WaitElementVisible(TitleBy);
+    public IWebElement FirstNameInput => Driver.FindElement(FirstNameFieldBy);
+    public IWebElement LastNameInput => Driver.FindElement(LastNameFieldBy);
+    public IWebElement PostalCodeInput => Driver.FindElement(PostalCodeFieldBy);
+    public IWebElement ContinueButton => Driver.FindElement(ContinueButtonBy);
+
     protected override void OpenPage()
     {
         Driver.Navigate().GoToUrl(Configurator.BaseUrl + EndPoint);
     }
 
-    protected override bool IsPageOpened()
+    public override bool IsPageOpened()
     {
         try
         {
@@ -33,10 +39,4 @@ public class CheckoutStepOnePage : BasePage
             return false;
         }
     }
-
-    public IWebElement Title => WaitService.WaitElementVisible(TitleBy);
-    public IWebElement FirstNameInput => Driver.FindElement(FirstNameFieldBy);
-    public IWebElement LastNameInput => Driver.FindElement(LastNameFieldBy);
-    public IWebElement PostalCodeInput => Driver.FindElement(PostalCodeFieldBy);
-    public IWebElement ContinueButton => Driver.FindElement(ContinueButtonBy);
 }

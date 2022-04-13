@@ -1,6 +1,7 @@
 ﻿using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 namespace PageObject.Services;
 
@@ -17,13 +18,13 @@ public class WaitService
 
     public static IWebElement WaitElementVisible(By locator)
     {
-        _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
+        _wait.Until(ExpectedConditions.ElementIsVisible(locator));
         return _driver!.FindElement(locator);
     }
 
     public static IWebElement WaitElementExist(By locator)
     {
-        _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(locator));
+        _wait.Until(ExpectedConditions.ElementExists(locator));
         return _driver!.FindElement(locator);
     }
 }

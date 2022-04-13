@@ -1,16 +1,19 @@
 ﻿using OpenQA.Selenium;
 using PageObject.Pages;
-using PageObject.Services;
 
 namespace PageObject.Steps;
 
-public static class LoginStep
+public class LoginStep : BaseStep
 {
-    public static void LogIn(IWebDriver? driver)
+    public LoginStep(IWebDriver driver) : base(driver)
     {
-        var loginPage = new LoginPage(driver, true);
-        loginPage.UsernameInput.SendKeys(Configurator.Username);
-        loginPage.PasswordInput.SendKeys(Configurator.Password);
+    }
+
+    public void Login(string userName, string password)
+    {
+        var loginPage = new LoginPage(Driver, true);
+        loginPage.UsernameInput.SendKeys(userName);
+        loginPage.PasswordInput.SendKeys(password);
         loginPage.LoginButton.Submit();
     }
 }

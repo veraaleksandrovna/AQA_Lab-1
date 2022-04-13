@@ -1,0 +1,10 @@
+﻿{
+  "StandardUserName": "standard_user",
+  "LockedOutUserName": "locked_out_user",
+  "ProblemUserName": "problem_user",
+  "PerformanceGlitchUserName": "performance_glitch_user",
+  "Password": "secret_sauce",
+  "FirstName": "Vera",
+  "LastName": "Vasiukevich",
+  "PostalCode": 220104
+}

@@ -1,21 +1,36 @@
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
 using NUnit.Framework;
+using OpenQA.Selenium;
 using PageObject.Pages;
 using PageObject.Services;
 
 namespace PageObject.Tests;
 
-public class LoginTest : BaseTest
+[TestFixture]
+[AllureNUnit]
+[AllureSuite("LoginTest")]
+public class LoginTests : BaseTest
 {
-    [Test]  
-    public void Test_SuccessLogin()
+    [Test]
+    [AllureTag("StandardUser")]
+    public void StandardUserLoginTest()
     {
-        var loginPage = new LoginPage(Driver, true);
-        loginPage.UsernameInput.SendKeys(Configurator.Username);
-        loginPage.PasswordInput.SendKeys(Configurator.Password);
-        loginPage.LoginButton.Submit();
+        LoginStep.Login(UsersConfigurator.StandardUserName, UsersConfigurator.Password);
+        Assert.IsTrue(new InventoryPage(Driver, false).IsPageOpened());
+        StringAssert.AreEqualIgnoringCase("Swag Labs", Driver.Title);
+    }
 
-        var inventoryPage = new InventoryPage(Driver, false);
-        
-        Assert.AreEqual("products", inventoryPage.Title.Text.ToLower());
+    [Test]
+    [AllureTag("LockedOutUser")]
+    public void LockedOutUserLoginTest()
+    {
+        LoginStep.Login(UsersConfigurator.LockedOutUserName, UsersConfigurator.Password);
+
+        var errorElement = Driver.FindElement(By.ClassName("error-message-container"));
+        var actualResult = errorElement.GetAttribute("textContent");
+        var expectedResult = "Epic sadface: Sorry, this user has been locked out.";
+
+        StringAssert.AreEqualIgnoringCase(expectedResult, actualResult);
     }
 }

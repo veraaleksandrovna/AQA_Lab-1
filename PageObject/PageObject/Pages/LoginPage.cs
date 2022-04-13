@@ -15,12 +15,16 @@ public class LoginPage : BasePage
     {
     }
 
+    public IWebElement UsernameInput => WaitService.WaitElementExist(UserNameInputBy);
+    public IWebElement PasswordInput => WaitService.WaitElementExist(PasswordInputBy);
+    public IWebElement LoginButton => WaitService.WaitElementExist(LoginButtonBy);
+
     protected override void OpenPage()
     {
         Driver.Navigate().GoToUrl(Configurator.BaseUrl + EndPoint);
     }
 
-    protected override bool IsPageOpened()
+    public override bool IsPageOpened()
     {
         try
         {
@@ -31,8 +35,4 @@ public class LoginPage : BasePage
             return false;
         }
     }
-    
-    public IWebElement UsernameInput => WaitService.WaitElementExist(UserNameInputBy);
-    public IWebElement PasswordInput => WaitService.WaitElementExist(PasswordInputBy);
-    public IWebElement LoginButton => WaitService.WaitElementExist(LoginButtonBy);
 }

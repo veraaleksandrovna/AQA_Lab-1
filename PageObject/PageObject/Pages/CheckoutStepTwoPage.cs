@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using PageObject.Services;
 
 namespace PageObject.Pages;
@@ -7,7 +6,7 @@ namespace PageObject.Pages;
 public class CheckoutStepTwoPage : BasePage
 {
     private const string EndPoint = "/checkout-step-two.html";
-    
+
     private static readonly By TitleBy = By.ClassName("title");
     private static readonly By ItemsListBy = By.ClassName("inventory_item_name");
     private static readonly By FinishButtonBy = By.CssSelector("button[data-test='finish']");
@@ -18,12 +17,17 @@ public class CheckoutStepTwoPage : BasePage
     {
     }
 
+    public IWebElement Title => WaitService.WaitElementVisible(TitleBy);
+    public IWebElement FinishButton => Driver.FindElement(FinishButtonBy);
+    public IWebElement CartQuantityField => Driver.FindElement(CartQuantityBy);
+    public IWebElement SummaryValueLabelField => Driver.FindElement(SummaryValueLabelBy);
+
     protected override void OpenPage()
     {
         Driver.Navigate().GoToUrl(Configurator.BaseUrl + EndPoint);
     }
 
-    protected override bool IsPageOpened()
+    public override bool IsPageOpened()
     {
         try
         {
@@ -34,9 +38,4 @@ public class CheckoutStepTwoPage : BasePage
             return false;
         }
     }
-
-    public IWebElement Title => WaitService.WaitElementVisible(TitleBy);
-    public IWebElement FinishButton => Driver.FindElement(FinishButtonBy);
-    public IWebElement CartQuantityField => Driver.FindElement(CartQuantityBy);
-    public IWebElement SummaryValueLabelField => Driver.FindElement(SummaryValueLabelBy);
 }

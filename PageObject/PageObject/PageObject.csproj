@@ -25,11 +25,12 @@
 
     <ItemGroup>
       <None Remove="CustomerInfo.json" />
-      <Content Include="CustomerInfo.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
       <None Remove="appsettings.json" />
       <Content Include="appsettings.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="usersData.json" />
+      <Content Include="usersData.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
     </ItemGroup>

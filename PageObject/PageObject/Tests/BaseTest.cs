@@ -8,14 +8,16 @@ namespace PageObject.Tests;
 public class BaseTest
 {
     protected IWebDriver? Driver;
-    
+
+    protected LoginStep LoginStep;
+
     [OneTimeSetUp]
     protected void OneTimeSetup()
     {
         Driver = new BrowserService().Driver;
-        LoginStep.LogIn(Driver);
+        LoginStep = new LoginStep(Driver);
     }
-    
+
     [OneTimeTearDown]
     protected void OneTimeTearDown()
     {

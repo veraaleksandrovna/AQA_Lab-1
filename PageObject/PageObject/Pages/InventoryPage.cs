@@ -17,12 +17,18 @@ public class InventoryPage : BasePage
     {
     }
 
+    public IWebElement Title => Driver.FindElement(TitleBy);
+    public IWebElement AddToCartBackpackButton => Driver.FindElement(AddToCartBackPackBy);
+    public IWebElement AddToCartBikelightButton => Driver.FindElement(AddToCartBikelightBy);
+    public IWebElement AddToCartJacketButton => Driver.FindElement(AddToCartJacketBy);
+    public IWebElement ShoppingCartBadge => Driver.FindElement(ShoppingCartBadgeBy);
+
     protected override void OpenPage()
     {
         Driver.Navigate().GoToUrl(Configurator.BaseUrl + EndPoint);
     }
 
-    protected override bool IsPageOpened()
+    public override bool IsPageOpened()
     {
         try
         {
@@ -33,10 +39,4 @@ public class InventoryPage : BasePage
             return false;
         }
     }
-
-    public IWebElement Title => Driver.FindElement(TitleBy);
-    public IWebElement AddToCartBackpackButton => Driver.FindElement(AddToCartBackPackBy);
-    public IWebElement AddToCartBikelightButton => Driver.FindElement(AddToCartBikelightBy);
-    public IWebElement AddToCartJacketButton => Driver.FindElement(AddToCartJacketBy);
-    public IWebElement ShoppingCartBadge => Driver.FindElement(ShoppingCartBadgeBy);
 }
