@@ -7,18 +7,18 @@ namespace PageObject.Tests;
 
 public class BaseTest
 {
-    protected IWebDriver? _driver;
+    protected IWebDriver? Driver;
     
     [OneTimeSetUp]
     protected void OneTimeSetup()
     {
-        _driver = new BrowserService().Driver;
-        LoginStep.LogIn(_driver);
+        Driver = new BrowserService().Driver;
+        LoginStep.LogIn(Driver);
     }
     
     [OneTimeTearDown]
     protected void OneTimeTearDown()
     {
-        _driver!.Quit();
+        Driver!.Quit();
     }
 }

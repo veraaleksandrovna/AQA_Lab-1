@@ -9,11 +9,11 @@ public class EndToEndTests : BaseTest
     [Test]
     public void EndToEndTest()
     {
-        var productsPage = new InventoryPage(_driver, false);
-        var cartPage = new CartPage(_driver, false);
-        var checkoutStepOnePage = new CheckoutStepOnePage(_driver, false);
-        var checkoutStepTwoPage = new CheckoutStepTwoPage(_driver, false);
-        var checkoutCompletePage = new CheckoutCompletePage(_driver, false);
+        var productsPage = new InventoryPage(Driver, false);
+        var cartPage = new CartPage(Driver, false);
+        var checkoutStepOnePage = new CheckoutStepOnePage(Driver, false);
+        var checkoutStepTwoPage = new CheckoutStepTwoPage(Driver, false);
+        var checkoutCompletePage = new CheckoutCompletePage(Driver, false);
 
         productsPage.AddToCartBikelightButton.Click();
         productsPage.AddToCartBackpackButton.Click();
