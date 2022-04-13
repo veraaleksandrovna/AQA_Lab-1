@@ -18,8 +18,19 @@
         <PackageReference Include="coverlet.collector" Version="3.1.0" />
         <PackageReference Include="Selenium.Support" Version="4.1.0" />
         <PackageReference Include="Selenium.WebDriver" Version="4.1.0" />
-        <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="101.0.4951.1500-beta" />
+        <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="100.0.4896.2000" />
         <PackageReference Include="WebDriverManager" Version="2.12.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="CustomerInfo.json" />
+      <Content Include="CustomerInfo.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="appsettings.json" />
+      <Content Include="appsettings.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

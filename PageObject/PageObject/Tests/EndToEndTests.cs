@@ -1,15 +1,11 @@
-﻿using System.Linq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using PageObject.Pages;
+using PageObject.Services;
 
 namespace PageObject.Tests;
 
 public class EndToEndTests : BaseTest
 {
-    private static readonly string FirstName = "vera";
-    private static readonly string LastName = "vasjukevich";
-    private static readonly string PostCode = "11111111";
-    
     [Test]
     public void EndToEndTest()
     {
@@ -26,9 +22,9 @@ public class EndToEndTests : BaseTest
         
         cartPage.CheckoutButton.Click();
         
-        checkoutStepOnePage.FirstNameInput.SendKeys(FirstName);
-        checkoutStepOnePage.LastNameInput.SendKeys(LastName);
-        checkoutStepOnePage.PostalCodeInput.SendKeys(PostCode);
+        checkoutStepOnePage.FirstNameInput.SendKeys(ConfiguratorCustomerInfo.Name);
+        checkoutStepOnePage.LastNameInput.SendKeys(ConfiguratorCustomerInfo.LastName);
+        checkoutStepOnePage.PostalCodeInput.SendKeys(ConfiguratorCustomerInfo.ZipCode);
         checkoutStepOnePage.ContinueButton.Click();
         
         Assert.AreEqual("1", checkoutStepTwoPage.CartQuantityField.Text);
