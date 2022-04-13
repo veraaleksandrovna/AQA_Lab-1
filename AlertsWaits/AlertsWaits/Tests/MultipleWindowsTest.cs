@@ -28,6 +28,7 @@ public class MultipleWindowsTest : BaseTest
         Driver.SwitchTo().Window(windows[2]);
         var twitterPage = new TwitterPage(Driver, false);
         Assert.IsTrue(twitterPage.OnlinerTitle.Displayed);
+        twitterPage.TwitterLogo.Click();
 
         Driver.SwitchTo().Window(windows[1]);
         var facebookPage = new FacebookPage(Driver, false);

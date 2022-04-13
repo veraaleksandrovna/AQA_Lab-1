@@ -6,10 +6,8 @@ namespace AlertsWaits.Pages;
 public class TwitterPage : BasePage
 {
     private static readonly By OnlinerTitleBy = By.XPath("(//span[contains(text(), 'onlíner')]) [1]");
-
-    public IWebElement OnlinerTitle = Driver.FindElement(OnlinerTitleBy);
-
-
+    private static readonly By TwitterLogoBy = By.CssSelector("h1[role = 'heading']");
+    
     public TwitterPage(IWebDriver driver, bool openPageByUrl) : base(driver, openPageByUrl)
     {
     }
@@ -23,4 +21,7 @@ public class TwitterPage : BasePage
     {
         return OnlinerTitle.Displayed;
     }
+    
+    public IWebElement OnlinerTitle = Driver.FindElement(OnlinerTitleBy);
+    public IWebElement TwitterLogo = WaitService.WaitElementIsExists(TwitterLogoBy);
 }
