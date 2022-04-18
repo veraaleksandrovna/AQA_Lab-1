@@ -10,7 +10,7 @@ public class OnlinerTest : BaseTest
 {
     
     private const string SearchKey = "asus";
-    private const string ExpectedResult = "asus";
+    private const string ExpectedResult = "";
 
     [Test]
     public void OnlinerSearchFrameTest()
@@ -25,13 +25,13 @@ public class OnlinerTest : BaseTest
         catalogPage.SearchField.SendKeys(SearchKey);
 
         Driver.SwitchTo().Frame(catalogPage.SearchFrame);
-        
         Assert.IsTrue(catalogPage.FirsrFrameItem.Displayed);
 
         actions.MoveToElement(catalogPage.FirsrFrameItem);
+        
+        catalogPage.SearcFieldFrame.Clear();
 
         var actualResult = catalogPage.SearcFieldFrame.Text;
-        
         Assert.AreEqual(ExpectedResult,actualResult);
 
 
