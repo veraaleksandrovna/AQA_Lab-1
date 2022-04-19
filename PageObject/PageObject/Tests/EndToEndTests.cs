@@ -1,4 +1,6 @@
-﻿using NUnit.Allure.Attributes;
+﻿using FluentAssertions;
+using FluentAssertions.Execution;
+using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using NUnit.Framework;
 using PageObject.Pages;
@@ -35,17 +37,18 @@ public class EndToEndTests : BaseTest
         checkoutStepOnePage.PostalCodeInput.SendKeys(UsersConfigurator.PostalCode);
         checkoutStepOnePage.ContinueButton.Click();
 
-        Assert.Multiple(() =>
-        {
-            Assert.AreEqual("1", checkoutStepTwoPage.CartQuantityField.Text);
-            Assert.IsTrue(checkoutStepTwoPage.SummaryValueLabelField.Displayed);
-        });
+        var textActualResult = checkoutStepTwoPage.CartQuantityField.Text;
+        
+        textActualResult.Should().BeEquivalentTo("1");
+        checkoutStepTwoPage.SummaryValueLabelField.Displayed.Should().BeTrue();
+        
+            
         checkoutStepTwoPage.FinishButton.Click();
 
-        Assert.IsTrue(checkoutCompletePage.PonyExpressLogo.Displayed);
+        checkoutCompletePage.PonyExpressLogo.Displayed.Should().BeTrue();
 
         checkoutCompletePage.BackHomeButton.Click();
 
-        Assert.IsTrue(productsPage.Title.Displayed);
+        productsPage.Title.Displayed.Should().BeTrue();
     }
 }
