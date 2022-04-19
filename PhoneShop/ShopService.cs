@@ -5,6 +5,7 @@ namespace PhoneShop
     public class ShopService
     {
         public Shop[] Shops { get; set; }
+        
         private int _countPhones;
         private int _countShops;
         private static ILoggerFactory loggerFactory = LoggerFactory.Create(config => { config.AddConsole(); });
@@ -14,19 +15,20 @@ namespace PhoneShop
         {
             var iosCount = 0;
             var androidCount = 0;
-            for (int i = 0; i < Shops.Length; i++)
+            foreach (var shop in Shops)
             {
                 logger.LogInformation(
-                    $"[Id] [Name]\n      {Shops[i].Id} {Shops[i].Name}\n      [Description]\n      {Shops[i].Description}\n      [Amount of phones in stock]");
-                for (int j = 0; j < Shops[i].Phones.Length; j++)
+                    $"[Id] [Name]\n      {shop.Id} {shop.Name}\n      [Description]\n      {shop.Description}\n      [Amount of phones in stock]");
+                foreach (var phone in shop.Phones)
                 {
-                    if (Shops[i].Phones[j].OperationSystemType == "IOS")
+                    switch (phone.OperationSystemType)
                     {
-                        iosCount++;
-                    }
-                    else if (Shops[i].Phones[j].OperationSystemType == "Android")
-                    {
-                        androidCount++;
+                        case OperationSystemType.IOS:
+                            iosCount++;
+                            break;
+                        case OperationSystemType.Android:
+                            androidCount++;
+                            break;
                     }
                 }
 
@@ -99,11 +101,11 @@ namespace PhoneShop
                                 }
                                 else
                                 {
-                                    throw new PhoneIsNotAvailableExceptions();
+                                    throw new PhoneIsNotAvailableException();
                                 }
                             }
                         }
-                        catch (PhoneIsNotAvailableExceptions)
+                        catch (PhoneIsNotAvailableException)
                         {
                             logger.LogError("This mobile phone is out of stock.");
                         }
