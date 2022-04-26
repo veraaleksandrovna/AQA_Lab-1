@@ -1,60 +1,37 @@
 using System;
-using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using Wrappers.Services;
 
-namespace Wrappers.Pages;
-
-public abstract class BasePage
+namespace Wrappers.Pages
 {
-    [ThreadStatic] private static IWebDriver _driver;
-    private const int WAIT_FOR_PAGE_LOADING_TIME = 60;
-    private static WaitService _waitService;
-    
-    protected abstract void OpenPage();
-
-    protected abstract bool IsPageOpened();
-
-    protected BasePage(IWebDriver driver, bool openPageByUrl)
+    public abstract class BasePage
     {
-        Driver = driver;
-        _waitService = new WaitService(Driver);
+        [ThreadStatic] private static IWebDriver _driver;
+        private static WaitService _waitService;
 
-        if (openPageByUrl)
+        protected static IWebDriver Driver
         {
-            OpenPage();
+            get => _driver;
+            set => _driver = value ?? throw new ArgumentNullException(nameof(value));
+        }
+        
+        public static WaitService WaitService => _waitService;
+
+        protected BasePage(IWebDriver driver)
+        {
+            _driver = driver;
+            _waitService = new WaitService(_driver);
         }
 
-        WaitForOpen();
-    }
-
-    private void WaitForOpen()
-    {
-        var secondsCount = 0;
-        var isPageOpenedIndicator = IsPageOpened();
-
-        while (!isPageOpenedIndicator && secondsCount < (WAIT_FOR_PAGE_LOADING_TIME / Configurator.WaitTimeout))
+        public void NavigateToPageAndWaitUntilOpened()
         {
-            //Thread.Sleep(1000);
-            secondsCount++;
-            isPageOpenedIndicator = IsPageOpened();
+            NavigateToPage();
+            CheckIfPageOpened();
         }
 
-        if (!isPageOpenedIndicator)
-        {
-            throw new AssertionException("Page was not opened...");
-        }
-    }
-
-    public static IWebDriver Driver
-    {
-        get => _driver;
-        set => _driver = value ?? throw new ArgumentNullException(nameof(value));
-    }
-
-    public static WaitService WaitService
-    {
-        get => _waitService;
+        protected abstract void NavigateToPage();
+        
+        public abstract bool CheckIfPageOpened();
     }
 }

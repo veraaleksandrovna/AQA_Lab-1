@@ -3,36 +3,39 @@ using System.IO;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
 
-namespace Wrappers.Services;
-
-public static class Configurator
+namespace Wrappers.Services.Configuration
 {
-    private static readonly Lazy<IConfiguration> s_configuration;
-    public static IConfiguration Configuration => s_configuration.Value;
-
-    public static string BaseUrl => Configuration[nameof(BaseUrl)];
-    public static string BrowserType => Configuration[nameof(BrowserType)];
-    public static int WaitTimeout => int.Parse(Configuration[nameof(WaitTimeout)]);
-
-    static Configurator()
+    public static class Configurator
     {
-        s_configuration = new Lazy<IConfiguration>(BuildConfiguration);
-    }
+        private static readonly Lazy<IConfiguration> s_configuration;
+        public static IConfiguration Configuration => s_configuration.Value;
+        
+        
+        public static string SliderUrl => Configuration.GetSection("Url").GetSection("Slider").Value;
+        public static string TableUrl => Configuration.GetSection("Url").GetSection("Table").Value;
+        
+        
 
-    private static IConfiguration BuildConfiguration()
-    {
-        var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        var builder = new ConfigurationBuilder()
-            .SetBasePath(basePath)
-            .AddJsonFile("appsettings.json");
+        public static string BrowserType => Configuration.GetSection("Service").GetSection("BrowserType").Value;
+        public static int WaitTimeout => int.Parse( Configuration.GetSection("Service").GetSection("WaitTimeout").Value);
 
-        var appSettingFiles = Directory.EnumerateFiles(basePath, "appsettings.*.json");
-
-        foreach (var appSettingFile in appSettingFiles)
+        static Configurator()
         {
-            builder.AddJsonFile(appSettingFile);
+            s_configuration = new Lazy<IConfiguration>(BuildConfiguration);
         }
 
-        return builder.Build();
+        private static IConfiguration BuildConfiguration()
+        {
+            var basePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(basePath)
+                .AddJsonFile("appsettings.json");
+
+            var appSettingFiles = Directory.EnumerateFiles(basePath, "appsettings.*.json");
+
+            foreach (var appSettingFile in appSettingFiles) builder.AddJsonFile(appSettingFile);
+
+            return builder.Build();
+        }
     }
 }

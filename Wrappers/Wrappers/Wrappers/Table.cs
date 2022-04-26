@@ -1,44 +1,59 @@
+using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace Wrappers.Wrappers;
-
-public class Table
+namespace Wrappers.Wrappers
 {
-    private UIElement _uiElement;
-    private IWebDriver _driver;
-
-    public Table(IWebDriver driver, By @by)
+    public class Table
     {
-        _driver = driver;
-        _uiElement = new UIElement(driver, by);
-    }
+        private BaseElementWrapper _baseElementWrapper;
+        private IWebDriver _driver;
+        private IJavaScriptExecutor _javaScriptExecutor;
 
-    public ReadOnlyCollection<IWebElement> GetHeaders => _uiElement.FindElements(By.TagName("th"));
-    public ReadOnlyCollection<IWebElement> GetRows => _uiElement.FindElements(By.XPath("//tbody/tr"));
-    public ReadOnlyCollection<IWebElement> GetCells(IWebElement row) => row.FindElements(By.TagName("td"));
+        private const int FirstElementIndex = 0;
+        
+        public bool Displayed => _baseElementWrapper.Displayed;
+    
+        private ReadOnlyCollection<IWebElement> Headers => _baseElementWrapper.FindElements(By.TagName("th"));
+    
+        private ReadOnlyCollection<IWebElement> Rows => _baseElementWrapper.FindElements(By.CssSelector("tbody > tr"));
 
-    public UIElement GetElementFromCell(string headerName, string columnValue, string targetHeaderName)
-    {
-        var index = GetHeaders.TakeWhile(header => !header.Text.Normalize().Equals(headerName)).Count();
-        var targetIndex = GetHeaders.TakeWhile(header => !header.Text.Normalize().Equals(targetHeaderName)).Count();
-
-        if (index > GetHeaders.Count)
+        public Table(IWebDriver driver, By @by)
         {
-            throw new AssertionException("ddd");
+            _baseElementWrapper = new BaseElementWrapper(driver, by);
+            _driver = driver;
+            _javaScriptExecutor = (IJavaScriptExecutor) driver;
+        }
+
+        public IWebElement GetDeleteEditElement(string rowName, string actionType)
+        {
+            var cellWithAction = GetCellElement("Action", rowName);
+            
+            return cellWithAction.FindElement(By.XPath($"//*[text() = '{actionType}']"));
         }
         
-        foreach (var row in GetRows)
+        public IWebElement GetCellElement(string columnName, string rowName)
         {
-            var cells = GetCells(row);
-            if (cells[index].Text.Normalize().Equals(columnValue))
+            if (string.IsNullOrEmpty(columnName) || string.IsNullOrEmpty(rowName))
             {
-                return new UIElement(_driver, cells[targetIndex]);
+                throw new ArgumentException("Arguments can't be null.");
             }
-        }
+            
+            var targetColumn = _baseElementWrapper.FindElement(By.XPath($"//*[text() = '{columnName}']"));
+            var cellIndex = Headers.IndexOf(targetColumn);
+            
+            var cellElement = _javaScriptExecutor.ExecuteScript(
+                "for (let index = 0; index < arguments[0].length; index++) {" + 
+                "if (arguments[0][index].cells[arguments[1]].innerText == arguments[2]) {" +
+                "return arguments[0][index].cells[arguments[3]];}" +
+                "}" , Rows, FirstElementIndex, rowName, cellIndex);
 
-        return null;
+            if (cellElement == null)
+            {
+                throw new NotFoundException("The cell wasn't found. Check column and row names.");
+            }
+
+            return (IWebElement)cellElement;
+        }
     }
 }

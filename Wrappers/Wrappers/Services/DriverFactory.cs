@@ -1,4 +1,3 @@
-using AngleSharp.Css;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -12,14 +11,14 @@ namespace Wrappers.Services
         public IWebDriver GetChromeDriver()
         {
             var chromeOptions = new ChromeOptions();
+            
             chromeOptions.AddArguments("--incognito");
             chromeOptions.AddArguments("--disable-gpu");
             chromeOptions.AddArguments("--disable-extensions");
-            //chromeOptions.AddArguments("--headless");
-            
+
             chromeOptions.SetLoggingPreference(LogType.Browser, LogLevel.All);
             chromeOptions.SetLoggingPreference(LogType.Driver, LogLevel.All);
-
+            
             new DriverManager().SetUpDriver(new ChromeConfig());
             return new ChromeDriver(chromeOptions);
         }
@@ -32,12 +31,12 @@ namespace Wrappers.Services
                 "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
             
             var ffOptions = new FirefoxOptions();
-            var profile = new FirefoxProfile();
+            var ffProfile = new FirefoxProfile();
             
-            profile.SetPreference("browser.download.folderList", 2);
-            profile.SetPreference("browser.helperApps.neverAsk.saveToDisk", mimeTypes);
-            profile.SetPreference("browser.helperApps.neverAsk.openFile", mimeTypes);
-            ffOptions.Profile = profile;
+            ffProfile.SetPreference("browser.download.folderList", 2);
+            ffProfile.SetPreference("browser.helperApps.neverAsk.saveToDisk", mimeTypes);
+            ffProfile.SetPreference("browser.helperApps.neverAsk.openFile", mimeTypes);
+            ffOptions.Profile = ffProfile;
             
             ffOptions.SetLoggingPreference(LogType.Browser, LogLevel.All);
             ffOptions.SetLoggingPreference(LogType.Driver, LogLevel.All);

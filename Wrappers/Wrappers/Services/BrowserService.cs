@@ -1,29 +1,27 @@
 using System;
 using OpenQA.Selenium;
+using Wrappers.Services.Configuration;
 
-namespace Wrappers.Services;
-
-public class BrowserService
+namespace Wrappers.Services
 {
-    private IWebDriver _driver;
-
-    public IWebDriver Driver
+    public class BrowserService
     {
-        get => _driver;
-        set => _driver = value;
-    }
+        private readonly IWebDriver _driver;
 
-    public BrowserService()
-    {
-        Driver = Configurator.BrowserType.ToLower() switch
+        public IWebDriver Driver { get; set; }
+
+        public BrowserService()
         {
-            "chrome" => new DriverFactory().GetChromeDriver(),
-            "firefox" => new DriverFactory().GetFirefoxDriver(),
-            _ => Driver
-        };
-        
-        //Driver.Manage().Window.Maximize();
-        Driver.Manage().Cookies.DeleteAllCookies();
-        Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(0);
+            Driver = Configurator.BrowserType switch
+            {
+                "chrome" => new DriverFactory().GetChromeDriver(),
+                "firefox" => new DriverFactory().GetFirefoxDriver(),
+                _ => null
+            };
+            
+            Driver.Manage().Window.Maximize();
+            Driver.Manage().Cookies.DeleteAllCookies();
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(0);
+        }
     }
 }

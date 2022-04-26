@@ -1,22 +1,36 @@
-﻿using OpenQA.Selenium;
+using System;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using Wrappers.Services.Configuration;
+using Wrappers.Wrappers;
 
-namespace Wrappers.Pages;
-
-public class TablePage:BasePage
+namespace Wrappers.Pages
 {
-    private const string EndPoint = "/challenging_dom";
+    public class TablePage : BasePage
+    {
+        private static readonly By TableLocatorBy = By.TagName("table");
+
+        public Table Table => new(Driver, TableLocatorBy);
     
-    public TablePage(IWebDriver driver, bool openPageByUrl) : base(driver, openPageByUrl)
-    {
-    }
+        public TablePage(IWebDriver driver) : base(driver)
+        {
+        }
 
-    protected override void OpenPage()
-    {
-        throw new System.NotImplementedException();
-    }
+        protected override void NavigateToPage()
+        {
+            Driver.Navigate().GoToUrl(Configurator.TableUrl);
+        }
 
-    protected override bool IsPageOpened()
-    {
-        throw new System.NotImplementedException();
+        public override bool CheckIfPageOpened()
+        {
+            try
+            {
+                return Table.Displayed;
+            }
+            catch (TimeoutException)
+            {
+                throw new AssertionException("The page wasn't opened.");
+            }
+        }
     }
 }

@@ -3,27 +3,28 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using Wrappers.Services;
 
-namespace Wrappers.Tests;
-
-public class BaseTest
+namespace Wrappers.Tests
 {
-    protected static IWebDriver _driver;
-    
-    [SetUp]
-    public void SetUp()
+    public class BaseTest
     {
-        _driver = new BrowserService().Driver;
-    }
+        [ThreadStatic] private static IWebDriver _driver;
 
-    [TearDown]
-    public void TearDown()
-    {
-        _driver.Quit();
-    }
-    
-    public static IWebDriver Driver
-    {
-        get => _driver;
-        set => _driver = value ?? throw new ArgumentNullException(nameof(value));
+        [SetUp]
+        public void SetUp()
+        {
+            _driver = new BrowserService().Driver;
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _driver.Quit();
+        }
+
+        protected static IWebDriver Driver
+        {
+            get => _driver;
+            set => _driver = value ?? throw new ArgumentNullException(nameof(value));
+        }
     }
 }

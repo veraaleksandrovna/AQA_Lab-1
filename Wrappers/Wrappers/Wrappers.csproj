@@ -5,6 +5,8 @@
         <Nullable>enable</Nullable>
 
         <IsPackable>false</IsPackable>
+
+        <RootNamespace>Wrappers</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -19,10 +21,6 @@
         <PackageReference Include="Selenium.WebDriver.WaitExtensions" Version="2.0.0" />
         <PackageReference Include="SeleniumExtras.WaitHelpers" Version="1.0.2" />
         <PackageReference Include="WebDriverManager" Version="2.12.4" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Steps" />
     </ItemGroup>
 
     <ItemGroup>
