@@ -11,7 +11,7 @@ namespace Wrappers.Pages
         private static readonly By SliderLocatorBy = By.TagName("input");
         private static readonly By SliderValueLocatorBy = By.CssSelector("#range");
 
-        public HorizontalSlider Slider => new(Driver, SliderLocatorBy);
+        public Slider Slider => new(Driver, SliderLocatorBy);
         public IWebElement SliderValue => WaitService.WaitUntilElementExists(SliderValueLocatorBy);
 
         public SliderPage(IWebDriver driver) : base(driver)

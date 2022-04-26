@@ -4,7 +4,7 @@ using Wrappers.Pages;
 
 namespace Wrappers.Tests
 {
-    public class HorizontalSliderTest : BaseTest
+    public class SliderTest : BaseTest
     {
         private SliderPage _sliderPage;
     

@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace Wrappers.Wrappers
 {
-    public class HorizontalSlider
+    public class Slider
     {
         private BaseElementWrapper _baseElementWrapper;
         private IWebDriver _driver;
@@ -19,7 +19,7 @@ namespace Wrappers.Wrappers
         private static readonly By SliderValueBy = By.CssSelector("span[id = 'range']");
         private IWebElement SliderValue => _driver.FindElement(SliderValueBy);
         
-        public HorizontalSlider(IWebDriver driver, By @by)
+        public Slider(IWebDriver driver, By @by)
         {
             _baseElementWrapper = new BaseElementWrapper(driver, by);
             _driver = driver;
