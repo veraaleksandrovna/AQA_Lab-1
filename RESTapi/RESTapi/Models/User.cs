@@ -1,4 +1,4 @@
-namespace TestRail.ApiTesting;
+namespace RESTapi.ApiTesting;
 
 public record User
 {

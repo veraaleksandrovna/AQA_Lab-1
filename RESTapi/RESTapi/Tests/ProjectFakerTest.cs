@@ -3,9 +3,9 @@ using Bogus;
 using NLog;
 using NUnit.Framework;
 using RESTapi.Fakers;
-using TestRail.ApiTesting;
+using RESTapi.ApiTesting;
 
-namespace RESTapi.TestsApi;
+namespace RESTapi.Tests;
 
 public class ProjectFakerTest : BaseTest
 {

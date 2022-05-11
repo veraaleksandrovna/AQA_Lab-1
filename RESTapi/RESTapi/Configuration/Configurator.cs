@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
-using TestRail.ApiTesting;
+using RESTapi.ApiTesting;
 
-namespace PageObject.Services
+namespace RESTapi.Configuration
 {
     public static class Configurator
     {

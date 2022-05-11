@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace TestRail.ApiTesting;
+namespace RESTapi.ApiTesting;
 
 public record Project
 {

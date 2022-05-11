@@ -1,5 +1,5 @@
 using Bogus;
-using TestRail.ApiTesting;
+using RESTapi.ApiTesting;
 
 namespace RESTapi.Fakers;
 

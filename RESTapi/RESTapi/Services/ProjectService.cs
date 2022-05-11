@@ -3,7 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using RESTapi.Clients;
 using RestSharp;
-using TestRail.ApiTesting;
+using RESTapi.ApiTesting;
 
 namespace RESTapi.Services;
 

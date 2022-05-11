@@ -1,6 +1,6 @@
 using System.Net;
 using System.Threading.Tasks;
-using TestRail.ApiTesting;
+using RESTapi.ApiTesting;
 
 namespace RESTapi.Services;
 

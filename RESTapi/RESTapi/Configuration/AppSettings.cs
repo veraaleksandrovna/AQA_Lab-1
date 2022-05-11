@@ -1,4 +1,4 @@
-namespace TestRail.ApiTesting;
+namespace RESTapi.Configuration;
 
 public class AppSettings
 {

@@ -2,9 +2,9 @@ using System.Diagnostics;
 using Bogus;
 using NLog;
 using NUnit.Framework;
-using TestRail.ApiTesting;
+using RESTapi.ApiTesting;
 
-namespace RESTapi.TestsApi;
+namespace RESTapi.Tests;
 
 public class ProjectTest : BaseTest
 {

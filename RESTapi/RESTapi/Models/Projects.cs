@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace TestRail.ApiTesting;
+namespace RESTapi.ApiTesting;
 
 public record Projects
 {

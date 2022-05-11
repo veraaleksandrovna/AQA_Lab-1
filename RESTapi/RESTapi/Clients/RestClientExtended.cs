@@ -3,21 +3,21 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using NLog;
-using PageObject.Services;
+using RESTapi.Configuration;
 using RestSharp;
 using RestSharp.Authenticators;
 
 namespace RESTapi.Clients
 {
-    public sealed class RestClientExtended
+   public sealed class RestClientExtended
     {
         private readonly RestClient _client;
         private readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        public static RestResponse? LastResponse;
 
         public RestClientExtended()
         {
             var options = new RestClientOptions(Configurator.AppSettings.URL ?? throw new InvalidOperationException());
-
             _client = new RestClient(options);
             Debug.Assert(Configurator.Admin != null, "Configurator.Admin != null");
             _client.Authenticator =
@@ -28,8 +28,8 @@ namespace RESTapi.Clients
         {
             LogRequest(request);
             var response = await _client.ExecuteAsync<T>(request);
+            LastResponse = response;
             LogResponse(response);
-
             return response.Data ?? throw new InvalidOperationException();
         }
 
@@ -38,17 +38,13 @@ namespace RESTapi.Clients
             LogRequest(request);
             var response = await _client.ExecuteAsync(request);
             LogResponse(response);
-
             return response;
         }
 
         private void LogRequest(RestRequest request)
         {
             _logger.Debug($"{request.Method} request to : {request.Resource}");
-
-            var body = request.Parameters
-                .FirstOrDefault(p => p.Type == ParameterType.RequestBody)?.Value;
-
+            var body = request.Parameters.FirstOrDefault(p => p.Type == ParameterType.RequestBody)?.Value;
             if (body != null)
             {
                 _logger.Debug($"body : {body}");
@@ -64,7 +60,6 @@ namespace RESTapi.Clients
             }
 
             _logger.Debug($"Request finished with status code : {response.StatusCode}");
-
             if (!string.IsNullOrEmpty(response.Content))
             {
                 _logger.Debug(response.Content);
